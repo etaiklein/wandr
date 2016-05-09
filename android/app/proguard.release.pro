@@ -77,7 +77,3 @@
 # google play services
 -keep public class com.google.android.gms.* { public *; }
 -dontwarn com.google.android.gms.**
-
-# DEVELOPMENT MODE ONLY
-
--keep class com.facebook.react.devsupport.** { *; }
