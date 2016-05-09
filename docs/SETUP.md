@@ -28,7 +28,7 @@ Before you get started, make sure you have the following dependencies installed 
 
         AUTH0_CLIENT_ID: '<CLIENT_ID>',
         AUTH0_NAMESPACE: '<APP_NAME>.eu.auth0.com'
-       
+
 3. Follow the steps for your platform below. Check the [official instructions](https://github.com/auth0/react-native-lock) for more information.
 
 ### Running the iOS application
@@ -75,6 +75,7 @@ More details here: [React Native Android Setup](https://facebook.github.io/react
   - Android Support Repository
   - Android Support Library
   - Intel x86 Emulator Accelerator (HAXM installer)
+  - Google Play Services (**Required for Google TagManager**)
 
 6. Configure and install hardware acceleration
 

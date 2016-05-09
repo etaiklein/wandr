@@ -62,6 +62,10 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
 
+# stetho
+
+-dontwarn com.facebook.stetho.**
+
 -dontskipnonpubliclibraryclassmembers
 
 -keepattributes *Annotation*,EnclosingMethod
