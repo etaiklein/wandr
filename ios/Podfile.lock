@@ -22,6 +22,9 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
+  - GoogleAnalytics (3.14.0)
+  - GoogleTagManager (3.15.0):
+    - GoogleAnalytics (= 3.14.0)
   - Lock (1.25.0):
     - CocoaLumberjack (~> 2.0)
     - Lock/Core (= 1.25.0)
@@ -57,6 +60,7 @@ PODS:
     - SimpleKeychain (~> 0.3)
 
 DEPENDENCIES:
+  - GoogleTagManager
   - Lock (~> 1.24)
   - Lock/Email
   - Lock/SMS
@@ -65,6 +69,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleTagManager: 39e4af1e9250e7817d328f690768e26afe560da0
   Lock: 8ebb80dda9c909d843622d5e529baf959c85d028
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
