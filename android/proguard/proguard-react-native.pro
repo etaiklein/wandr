@@ -1,3 +1,5 @@
+# This is the original proguard
+
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
 # in /usr/local/Cellar/android-sdk/24.3.3/tools/proguard/proguard-android.txt
@@ -19,6 +21,10 @@
 # Disabling obfuscation is useful if you collect stack traces from production crashes
 # (unless you are using a system that supports de-obfuscate the stack traces).
 -dontobfuscate
+
+# Optimization is disabled because could not get it to work in a reasonable time.
+# If optimization is desired, expect the build is broken
+-dontoptimize
 
 # React Native
 
@@ -47,37 +53,4 @@
 
 -dontwarn com.facebook.react.**
 
-# okhttp
-
--keepattributes Signature
--keepattributes *Annotation*
--keep class com.squareup.okhttp.** { *; }
--keep interface com.squareup.okhttp.** { *; }
--dontwarn com.squareup.okhttp.**
-
-# okio
-
--keep class sun.misc.Unsafe { *; }
--dontwarn java.nio.file.*
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
--dontwarn okio.**
-
-# stetho
-
--dontwarn com.facebook.stetho.**
-
-# react-native-lock
--dontskipnonpubliclibraryclassmembers
--keepattributes *Annotation*,EnclosingMethod
--keepnames class org.codehaus.jackson.** { *; }
--dontwarn javax.xml.**
--dontwarn javax.xml.stream.events.**
--dontwarn com.fasterxml.jackson.databind.**
-
-# google play services
--keep public class com.google.android.gms.* { public *; }
--dontwarn com.google.android.gms.**
-
-# DEVELOPMENT MODE ONLY
-
--keep class com.facebook.react.devsupport.** { *; }
+-dontwarn android.support.v4.**

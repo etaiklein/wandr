@@ -106,11 +106,28 @@ android {
     buildTypes {
         debug {
             minifyEnabled enableProguardInDebugBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard.debug.pro"
+            // same as release, but with debug.pro
+            proguardFile '../proguard/proguard-react-native.pro'
+            proguardFile '../proguard/proguard-facebook.pro' //facebook native auth
+            proguardFile '../proguard/proguard-google-play-services.pro' //G+ native auth
+            proguardFile '../proguard/proguard-square-okhttp.pro' //Auth0 core
+            proguardFile '../proguard/proguard-jackson-2.pro' //Auth0 core
+            proguardFile '../proguard/proguard-square-otto.pro' //Lock
+            proguardFile '../proguard/proguard-okio.pro' //OKIO
+            proguardFile '../proguard/proguard-lock.pro' //Lock
+            proguardFile '../proguard/debug.pro' //Debug mode rules
         }
         release {
             minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard.release.pro"
+            // same as debug mode, but without debug.pro
+            proguardFile '../proguard/proguard-react-native.pro'
+            proguardFile '../proguard/proguard-facebook.pro' //facebook native auth
+            proguardFile '../proguard/proguard-google-play-services.pro' //G+ native auth
+            proguardFile '../proguard/proguard-square-okhttp.pro' //Auth0 core
+            proguardFile '../proguard/proguard-jackson-2.pro' //Auth0 core
+            proguardFile '../proguard/proguard-square-otto.pro' //Lock
+            proguardFile '../proguard/proguard-okio.pro' //OKIO
+            proguardFile '../proguard/proguard-lock.pro' //Lock
         }
     }
     // applicationVariants are e.g. debug, release
