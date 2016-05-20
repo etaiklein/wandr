@@ -16,7 +16,8 @@ const randomPicker = () => Math.floor(Math.random() * places.length);
 const PlacesView = React.createClass({
   propTypes: {
     index: PropTypes.number.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    office: PropTypes.string.isRequired
   },
 
   getInitialState() {
@@ -50,6 +51,9 @@ const PlacesView = React.createClass({
 
     return (
       <View style={[styles.container, {backgroundColor: this.state.background}]}>
+        <Text style={styles.location}>
+          {this.props.office}
+        </Text>
         <Text onPress={this.onNextPress} style={styles.placeTitle}>
           {place.name}
         </Text>
@@ -90,6 +94,9 @@ const styles = StyleSheet.create({
     margin: 10,
     borderWidth: 1,
     borderColor: '#000000'
+  },
+  location: {
+    paddingBottom: 40
   }
 });
 
