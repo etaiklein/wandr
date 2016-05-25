@@ -12,6 +12,8 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.Container;
 import com.google.android.gms.tagmanager.ContainerHolder;
 import com.google.android.gms.tagmanager.TagManager;
+import com.kindling.analytics.AnalyticsModule;
+import com.kindling.analytics.AnalyticsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,35 +43,20 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new LockReactPackage()
+            new LockReactPackage(),
+            new AnalyticsPackage()
         );
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "Initialising TagManager");
-        TagManager tagManager = TagManager.getInstance(this);
-        PendingResult<ContainerHolder> pending =
-                tagManager.loadContainerPreferNonDefault("GTM-MKJZGQ",
-                        R.raw.gtm_mkjzgq);
+
+        AnalyticsModule.initialize(MainActivity.this);
 
 
-        pending.setResultCallback(new ResultCallback<ContainerHolder>() {
-            @Override
-            public void onResult(ContainerHolder containerHolder) {
-                Analytics.initialize(MainActivity.this, containerHolder);
-                Container container = containerHolder.getContainer();
-                if (!containerHolder.getStatus().isSuccess()) {
-                    Log.e(TAG, "failure loading container");
-                    return;
-                }
 
-                Log.e(TAG, "Sending sample screen view");
 
-                Analytics.sendScreenView("Test screen #1");
-            }
-        }, 10000, TimeUnit.MILLISECONDS);
 
     }
 }

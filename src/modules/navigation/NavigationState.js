@@ -1,8 +1,9 @@
-import {fromJS} from 'immutable';
 
+import {fromJS} from 'immutable';
+import {sendScreenView} from '../../utils/analytics';
 // Actions
-const PUSH_ROUTE = 'NavigationState/PUSH_ROUTE';
-const POP_ROUTE = 'NavigationState/POP_ROUTE';
+export const PUSH_ROUTE = 'NavigationState/PUSH_ROUTE';
+export const POP_ROUTE = 'NavigationState/POP_ROUTE';
 const SWITCH_TAB = 'NavigationState/SWITCH_TAB';
 const NAVIGATION_COMPLETED = 'NavigationState/NAVIGATION_COMPLETED';
 
