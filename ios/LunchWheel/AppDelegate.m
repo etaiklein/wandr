@@ -47,7 +47,7 @@
 #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"PepperoniAppTemplate"
+                                                      moduleName:@"LunchWheel"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 

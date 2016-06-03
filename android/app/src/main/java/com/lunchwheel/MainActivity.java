@@ -1,4 +1,4 @@
-package com.pepperoniapptemplate;
+package com.lunchwheel;
 
 import com.facebook.react.ReactActivity;
 import com.auth0.lock.react.LockReactPackage;
@@ -16,7 +16,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "PepperoniAppTemplate";
+        return "LunchWheel";
     }
 
     /**

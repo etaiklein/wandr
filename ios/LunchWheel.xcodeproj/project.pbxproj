@@ -12,7 +12,7 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* PepperoniAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PepperoniAppTemplateTests.m */; };
+		00E356F31AD99517003FC87E /* LunchWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LunchWheelTests.m */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -21,9 +21,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		6BBAA2DD98828E22BE77F743 /* libPods-LunchWheel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7128A399A5627DAFCCD61767 /* libPods-LunchWheel.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C479462A5C42476786A6A1D0 /* libA0RNLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA06CD398E24534B72848C5 /* libA0RNLock.a */; };
-		E71E5A58F35C2A785460512A /* libPods-PepperoniAppTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C465081FA4B5BC6A6E35D62D /* libPods-PepperoniAppTemplate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = PepperoniAppTemplate;
+			remoteInfo = LunchWheel;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -120,26 +120,26 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* PepperoniAppTemplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PepperoniAppTemplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* LunchWheelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchWheelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* PepperoniAppTemplateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PepperoniAppTemplateTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* LunchWheelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LunchWheelTests.m; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* PepperoniAppTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PepperoniAppTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PepperoniAppTemplate/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PepperoniAppTemplate/AppDelegate.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* LunchWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = LunchWheel/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = LunchWheel/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PepperoniAppTemplate/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PepperoniAppTemplate/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PepperoniAppTemplate/main.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LunchWheel/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LunchWheel/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = LunchWheel/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		7128A399A5627DAFCCD61767 /* libPods-LunchWheel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LunchWheel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		938FD9977D1735DEB15300EE /* Pods-PepperoniAppTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepperoniAppTemplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-PepperoniAppTemplate/Pods-PepperoniAppTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		AD98742C065D441FB42AD0F1 /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = A0RNLock.xcodeproj; path = "../node_modules/react-native-lock/A0RNLock.xcodeproj"; sourceTree = "<group>"; };
-		C465081FA4B5BC6A6E35D62D /* libPods-PepperoniAppTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PepperoniAppTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD2133A8F4EFE8077F7E889F /* Pods-LunchWheel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunchWheel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunchWheel/Pods-LunchWheel.debug.xcconfig"; sourceTree = "<group>"; };
 		CDA06CD398E24534B72848C5 /* libA0RNLock.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libA0RNLock.a; sourceTree = "<group>"; };
-		D50692D4E0DD0735E687BCD2 /* Pods-PepperoniAppTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PepperoniAppTemplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PepperoniAppTemplate/Pods-PepperoniAppTemplate.debug.xcconfig"; sourceTree = "<group>"; };
+		F0DC093AC0684F8A0FAF9A34 /* Pods-LunchWheel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunchWheel.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunchWheel/Pods-LunchWheel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +164,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				E71E5A58F35C2A785460512A /* libPods-PepperoniAppTemplate.a in Frameworks */,
 				C479462A5C42476786A6A1D0 /* libA0RNLock.a in Frameworks */,
+				6BBAA2DD98828E22BE77F743 /* libPods-LunchWheel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,13 +212,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00E356EF1AD99517003FC87E /* PepperoniAppTemplateTests */ = {
+		00E356EF1AD99517003FC87E /* LunchWheelTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* PepperoniAppTemplateTests.m */,
+				00E356F21AD99517003FC87E /* LunchWheelTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = PepperoniAppTemplateTests;
+			path = LunchWheelTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -245,7 +245,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* PepperoniAppTemplate */ = {
+		13B07FAE1A68108700A75B9A /* LunchWheel */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -256,7 +256,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = PepperoniAppTemplate;
+			name = LunchWheel;
 			sourceTree = "<group>";
 		};
 		146834001AC3E56700842450 /* Products */ = {
@@ -265,6 +265,15 @@
 				146834041AC3E56700842450 /* libReact.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		629F93DAE48FF4DBF80C214D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD2133A8F4EFE8077F7E889F /* Pods-LunchWheel.debug.xcconfig */,
+				F0DC093AC0684F8A0FAF9A34 /* Pods-LunchWheel.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -304,12 +313,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* PepperoniAppTemplate */,
+				13B07FAE1A68108700A75B9A /* LunchWheel */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* PepperoniAppTemplateTests */,
+				00E356EF1AD99517003FC87E /* LunchWheelTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				C17771E531B2BBCE2B361176 /* Pods */,
-				E82F99E76E8731D85B98B159 /* Frameworks */,
+				629F93DAE48FF4DBF80C214D /* Pods */,
+				E93EBCCC752F1925AEDD3807 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -318,19 +327,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* PepperoniAppTemplate.app */,
-				00E356EE1AD99517003FC87E /* PepperoniAppTemplateTests.xctest */,
+				13B07F961A680F5B00A75B9A /* LunchWheel.app */,
+				00E356EE1AD99517003FC87E /* LunchWheelTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C17771E531B2BBCE2B361176 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D50692D4E0DD0735E687BCD2 /* Pods-PepperoniAppTemplate.debug.xcconfig */,
-				938FD9977D1735DEB15300EE /* Pods-PepperoniAppTemplate.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		DDC1AA8D1D00447E009A9298 /* Products */ = {
@@ -341,10 +341,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E82F99E76E8731D85B98B159 /* Frameworks */ = {
+		E93EBCCC752F1925AEDD3807 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C465081FA4B5BC6A6E35D62D /* libPods-PepperoniAppTemplate.a */,
+				7128A399A5627DAFCCD61767 /* libPods-LunchWheel.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,9 +352,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* PepperoniAppTemplateTests */ = {
+		00E356ED1AD99517003FC87E /* LunchWheelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PepperoniAppTemplateTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "LunchWheelTests" */;
 			buildPhases = (
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
@@ -365,30 +365,30 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = PepperoniAppTemplateTests;
-			productName = PepperoniAppTemplateTests;
-			productReference = 00E356EE1AD99517003FC87E /* PepperoniAppTemplateTests.xctest */;
+			name = LunchWheelTests;
+			productName = LunchWheelTests;
+			productReference = 00E356EE1AD99517003FC87E /* LunchWheelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* PepperoniAppTemplate */ = {
+		13B07F861A680F5B00A75B9A /* LunchWheel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PepperoniAppTemplate" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "LunchWheel" */;
 			buildPhases = (
-				98EAEF8AC12B4BC7892DB9B9 /* 📦 Check Pods Manifest.lock */,
+				AB7961B8574F96CF1BA3FD5A /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				27A9C0C7F07A81753CC7FD4F /* 📦 Embed Pods Frameworks */,
-				3F007284397F85AD6CF9BF16 /* 📦 Copy Pods Resources */,
+				24D0DB7CAE999E0507965554 /* [CP] Embed Pods Frameworks */,
+				CA544D2B5CCEF3844ABE3599 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PepperoniAppTemplate;
+			name = LunchWheel;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* PepperoniAppTemplate.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* LunchWheel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -406,7 +406,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PepperoniAppTemplate" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "LunchWheel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -465,8 +465,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* PepperoniAppTemplate */,
-				00E356ED1AD99517003FC87E /* PepperoniAppTemplateTests */,
+				13B07F861A680F5B00A75B9A /* LunchWheel */,
+				00E356ED1AD99517003FC87E /* LunchWheelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -585,49 +585,49 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
-		27A9C0C7F07A81753CC7FD4F /* 📦 Embed Pods Frameworks */ = {
+		24D0DB7CAE999E0507965554 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PepperoniAppTemplate/Pods-PepperoniAppTemplate-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunchWheel/Pods-LunchWheel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3F007284397F85AD6CF9BF16 /* 📦 Copy Pods Resources */ = {
+		AB7961B8574F96CF1BA3FD5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PepperoniAppTemplate/Pods-PepperoniAppTemplate-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		98EAEF8AC12B4BC7892DB9B9 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CA544D2B5CCEF3844ABE3599 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunchWheel/Pods-LunchWheel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -637,7 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* PepperoniAppTemplateTests.m in Sources */,
+				00E356F31AD99517003FC87E /* LunchWheelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +655,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* PepperoniAppTemplate */;
+			target = 13B07F861A680F5B00A75B9A /* LunchWheel */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -667,7 +667,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = PepperoniAppTemplate;
+			path = LunchWheel;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -681,7 +681,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = PepperoniAppTemplateTests/Info.plist;
+				INFOPLIST_FILE = LunchWheelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -689,7 +689,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PepperoniAppTemplate.app/PepperoniAppTemplate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchWheel.app/LunchWheel";
 			};
 			name = Debug;
 		};
@@ -698,7 +698,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = PepperoniAppTemplateTests/Info.plist;
+				INFOPLIST_FILE = LunchWheelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -706,13 +706,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PepperoniAppTemplate.app/PepperoniAppTemplate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchWheel.app/LunchWheel";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D50692D4E0DD0735E687BCD2 /* Pods-PepperoniAppTemplate.debug.xcconfig */;
+			baseConfigurationReference = BD2133A8F4EFE8077F7E889F /* Pods-LunchWheel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
@@ -722,21 +722,21 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-lock/A0RNLock/**",
 				);
-				INFOPLIST_FILE = PepperoniAppTemplate/Info.plist;
+				INFOPLIST_FILE = LunchWheel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pepperoni.PepperoniAppTemplate;
-				PRODUCT_NAME = PepperoniAppTemplate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepperoni.LunchWheel;
+				PRODUCT_NAME = LunchWheel;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 938FD9977D1735DEB15300EE /* Pods-PepperoniAppTemplate.release.xcconfig */;
+			baseConfigurationReference = F0DC093AC0684F8A0FAF9A34 /* Pods-LunchWheel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
@@ -745,15 +745,15 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-lock/A0RNLock/**",
 				);
-				INFOPLIST_FILE = PepperoniAppTemplate/Info.plist;
+				INFOPLIST_FILE = LunchWheel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pepperoni.PepperoniAppTemplate;
-				PRODUCT_NAME = PepperoniAppTemplate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepperoni.LunchWheel;
+				PRODUCT_NAME = LunchWheel;
 			};
 			name = Release;
 		};
@@ -848,7 +848,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "PepperoniAppTemplateTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "LunchWheelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -857,7 +857,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "PepperoniAppTemplate" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "LunchWheel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -866,7 +866,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "PepperoniAppTemplate" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "LunchWheel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
