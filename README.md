@@ -44,10 +44,20 @@ Not all of the below is yet fully implemented
 
 ### Development & Deployment Infrastructure
 
-* [Auth0](https://auth0.com/) for ready-to-use login and signup screens, user authentication and identity management
+* [Auth0](https://auth0.com/) for ready-to-use login and signup screens, user authentication and identity management (see [guide](docs/AUTH0.md))
 * [Bitrise.io](https://www.bitrise.io) configurations for Continuous Integration and beta app distribution
 * :warning: [Google Tag Manager](https://www.google.com/analytics/tag-manager/) analytics
 * :star: [Microsoft Code Push](http://microsoft.github.io/code-push) for Continuous Deployment and instant app updates
+
+### Guides
+
+* [Getting Started](#getting-started)
+* [React Native Develoment workflow](#development-workflow)
+* [Understanding Redux and the Pepperoni architecture](docs/ARCHITECTURE.md)
+* [Using RESTful APIs with optional JWT Authentication](docs/API.md)
+* [Integrating Auth0](docs/AUTH0.md)
+* :star: [Deployment Guide](docs/DEPLOYMENT.md)
+* :star: [Testing Guide](docs/TESTING.md)
 
 ### Roadmap
 
@@ -118,12 +128,6 @@ While the React Native library itself is very stable in production, the develope
 * If using hot reloading, turn it off and turn it on again :)
 * Check the React Native packager log (the shell process started when you launch your application). If you see any errors, kill the process with `Ctrl+C` and start it again by running `react-native start` in your app's root directory.
 * If you have modified any native code or installed new dependencies from npm, kill the packager process and start the application again with `react-native run-{platform}` (or from Xcode/Android Studio).
-
-To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** for more details.
-
-## Deployment
-
-Read the **[Deployment guide](docs/DEPLOYMENT.md)** to learn how to deploy the application to test devices, app stores, and how to use Code Push to push updates to your users immediately.
 
 ## Contributing
 
