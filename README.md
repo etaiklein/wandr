@@ -49,7 +49,6 @@ Not all of the below is yet fully implemented
 * :warning: [Google Tag Manager](https://www.google.com/analytics/tag-manager/) analytics
 * :star: [Microsoft Code Push](http://microsoft.github.io/code-push) for Continuous Deployment and instant app updates
 
-
 ### Roadmap
 
 * **TODO** Crash reporting
@@ -58,28 +57,38 @@ Not all of the below is yet fully implemented
 
 ## Getting started
 
-To build your own app on top of the Starter Kit, fork or mirror this repository. Because you can't rename a fork, for serious use we recommend [mirroring using these instructions](https://help.github.com/articles/duplicating-a-repository/). To contribute to Starter Kit development or just playing around, forking is the way to go.
+##### Set up development environment
+If this is your first time using React Native, set up your React Native development environment following the ["Dependencies" section of React Native Getting Started guide](https://facebook.github.io/react-native/docs/getting-started.html). Note that if you want to develop an app for both iOS and Android, you need to set up the development environment both.
 
-First, give your application a name by running `./support/rename.sh YourAppName`.
+##### Download the code
+Once you've got a development environment up and running, you're ready to start building your app. Get the code by forking or mirroring this repository. Because you can't rename a fork, for serious use we recommend [mirroring using these instructions](https://help.github.com/articles/duplicating-a-repository/). To contribute to Pepperoni development or just playing around, forking is the way to go.
 
-Once you have the code downloaded, follow the **[Setup guide](docs/SETUP.md)** to get started.
+Once you have the code downloaded, give your application a name by running `./support/rename.sh YourAppName`.
 
-## Development workflow
-
-After you have set up the project using above instructions, you can use your favorite IDE or text editor to write code, and run the application from the command line. Turn on React Native hot module reloading in the app developer menu to update your application as you code.
-
-To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** for more details.
+##### Install dependencies
+Before you can run the app, you need is to install the app's dependencies. Execute the following command in the app's root directory:
+```
+npm install
+```
 
 ##### Start the application in iOS simulator
 ```
 $ react-native run-ios
 ```
 
+To run the app on a real iOS device, follow the [official React Native instructions for iOS](https://facebook.github.io/react-native/docs/running-on-device-ios.html).
+
 ##### Start the application in Android simulator
-(If using the stock emulator, the emulator must be running)
 ```
 $ react-native run-android
 ```
+
+If using the stock emulator, the emulator must be running. You can start it from Android Studio, or opening the Virtual Device manager directly:
+```
+. $ANDROID_HOME/tools/android avd
+```
+
+To run the app on a real Android device, follow the [official React Native instructions for Android](https://facebook.github.io/react-native/docs/running-on-device-android.html).
 
 ##### Run unit tests
 ```
@@ -97,6 +106,14 @@ $ npm run coverage
 ```
 
 Read the **[Testing guide](docs/TESTING.md)** for more information about writing tests.
+
+## Development workflow
+
+After you have set up the project using above instructions, you can use your favorite IDE or text editor to write code, and run the application from the command line. Turn on React Native hot module reloading in the app developer menu to refresh your application as you code.
+
+The developer menu can be accessed with `Cmd+D` in iOS Simulator, `Cmd+M` in Android emulator, or by shaking the device.
+
+To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** for more details.
 
 ## Deployment
 
