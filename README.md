@@ -58,7 +58,7 @@ Not all of the below is yet fully implemented
 ## Getting started
 
 ### Set up development environment
-If this is your first time using React Native, set up your React Native development environment following the ["Dependencies" section of React Native Getting Started guide](https://facebook.github.io/react-native/docs/getting-started.html). Note that if you want to develop an app for both iOS and Android, you need to set up the development environment both.
+If this is your first time using React Native, set up your React Native development environment following the ["Dependencies" section of React Native Getting Started guide](https://facebook.github.io/react-native/docs/getting-started.html). Note that if you want to develop an app for both iOS and Android, you need to set up both development environments.
 
 ### Download the code
 Once you've got a development environment up and running, you're ready to start building your app. Get the code by forking or mirroring this repository. Because you can't rename a fork, for serious use we recommend [mirroring using these instructions](https://help.github.com/articles/duplicating-a-repository/). To contribute to Pepperoni development or just playing around, forking is the way to go.
