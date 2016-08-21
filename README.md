@@ -71,6 +71,8 @@ Before you can run the app, you need is to install the app's dependencies. Execu
 npm install
 ```
 
+## Development workflow
+
 ### Start the application in iOS simulator
 ```
 $ react-native run-ios
@@ -107,11 +109,15 @@ $ npm run coverage
 
 Read the **[Testing guide](docs/TESTING.md)** for more information about writing tests.
 
-## Development workflow
+### Write code
 
-After you have set up the project using above instructions, you can use your favorite IDE or text editor to write code, and run the application from the command line. Turn on React Native hot module reloading in the app developer menu to refresh your application as you code.
+After you have set up the project using above instructions, you can use your favorite IDE or text editor to write code, and run the application from the command line. Turn on React Native hot module reloading in the app developer menu to refresh your application as you code. The developer menu can be accessed with `Cmd+D` in iOS Simulator, `Cmd+M` in Android emulator, or by shaking the device.
 
-The developer menu can be accessed with `Cmd+D` in iOS Simulator, `Cmd+M` in Android emulator, or by shaking the device.
+While the React Native library itself is very stable in production, the developer tooling can sometimes be a bit finicky. If you receive surprising errors, in 95% of cases one of the following helps:
+
+* If using hot reloading, turn it off and turn it on again :)
+* Check the React Native packager log (the shell process started when you launch your application). If you see any errors, kill the process with `Ctrl+C` and start it again by running `react-native start` in your app's root directory.
+* If you have modified any native code or installed new dependencies from npm, kill the packager process and start the application again with `react-native run-{platform}` (or from Xcode/Android Studio).
 
 To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** for more details.
 
