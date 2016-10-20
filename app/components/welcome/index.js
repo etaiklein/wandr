@@ -3,7 +3,8 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import {View, Text} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class Welcome extends Component {
   constructor(props) {
@@ -13,9 +14,9 @@ class Welcome extends Component {
   render() {
     const { state, actions } = this.props;
     return ( 
-    <View>
-      <Text>Welcome</Text>
-    </View>
+      <TouchableOpacity onPress={Actions.journey} style={{margin: 128}}>
+        <Text >{state.routes.scene.title}</Text>
+      </TouchableOpacity>
     );
   }
 }

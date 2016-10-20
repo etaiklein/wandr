@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import {View, Text} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class Journey extends Component {
   constructor(props) {
@@ -13,9 +14,9 @@ class Journey extends Component {
   render() {
     const { state, actions } = this.props;
     return ( 
-    <View>
-      <Text>Journey</Text>
-    </View>
+      <View style={{margin: 128}}>
+        <Text >{state.routes.scene.title}</Text>
+      </View>
     );
   }
 }
