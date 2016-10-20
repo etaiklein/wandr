@@ -10,23 +10,37 @@ export default class FormView extends Component {
     super(props);
   }
 
-  render() {
-    const { routes, handleSubmit } = this.props;
-    return ( 
-      <Form
-        ref='welcomeForm'>
-        <Text>I need to arrive at</Text>
-        <InputField 
-             ref='location' 
-             placeholder='Location'/>
-        <Text>By</Text>
-        <TimePickerField 
-             ref='time' />
-        <View>
-          <Text>Wander!</Text>
-        </View>
-      </Form>
-    );
+  handleFormChange(formData){
+    console.log("CHANGE");
+    this.props.actions.updateForm(formData);
   }
 
+  handleSubmit(){
+    console.log("SUBMIT");
+    this.props.actions.submitForm();
+    this.props.next();
+  }
+
+  render() {
+    const { routes, next } = this.props;
+
+    return ( 
+      <View>
+        <Form
+          ref='welcomeForm'
+          onChange={this.handleFormChange.bind(this)}>
+          <Text>I need to arrive at</Text>
+          <InputField 
+               ref='location' 
+               placeholder='Location'/>
+          <Text>By</Text>
+          <TimePickerField 
+               ref='time' />
+        </Form>
+        <TouchableOpacity onPress={this.handleSubmit.bind(this)}>
+          <Text>Wander!</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }

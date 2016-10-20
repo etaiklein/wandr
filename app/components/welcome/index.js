@@ -1,25 +1,31 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FormView from './form';
+import { updateForm, submitForm } from '../../redux/form/action-creators'
 
 class Welcome extends Component {
   constructor(props) {
     super(props);
   }
 
+  actions = {
+    updateForm: this.props.updateForm,
+    submitForm: this.props.submitForm
+  }
+
   render() {
-    const { state, actions } = this.props;
     return ( 
-      <TouchableOpacity onPress={Actions.journey} style={{marginTop: 128}}>
+      <View style={{marginTop: 128}}>
         <FormView
-          routes={state.routes}
-        ></FormView>
-      </TouchableOpacity>
+          actions={this.actions}
+          routes={this.props.state.routes}
+          next={Actions.journey}
+        />
+      </View>
     );
   }
 }
@@ -28,4 +34,13 @@ const mapStateToProps = state => ({
   state
 })
 
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => ({
+  updateForm: (data) => {
+    dispatch(updateForm(data))
+  },
+  submitForm: () => {
+    dispatch(submitForm())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
