@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FormView from './form';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
@@ -19,7 +19,7 @@ class Welcome extends Component {
 
   render() {
     return ( 
-      <View style={{marginTop: 128}}>
+      <View style={{flex: 1}}>
         <FormView
           actions={this.actions}
           routes={this.props.state.routes}
