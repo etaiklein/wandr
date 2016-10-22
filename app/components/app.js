@@ -4,8 +4,12 @@ import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import { Router, Scene } from 'react-native-router-flux';
 import configureStore from '../redux/configure-store';
+import {fetchDistance, fetchGeocode} from '../redux/location/action-creators';
 
 const store = configureStore();
+store.dispatch(fetchGeocode('1600+Pennsylvania+Ave+nw'));
+store.dispatch(fetchDistance([[-77.083056,38.908611],[-76.997778,38.959167]]));
+
 const RouterWithRedux = connect()(Router);
 
 import Welcome from './welcome';

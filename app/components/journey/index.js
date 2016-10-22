@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import {View, Text} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+//https://facebook.github.io/react-native/docs/geolocation.html
+
 class Journey extends Component {
   constructor(props) {
     super(props);

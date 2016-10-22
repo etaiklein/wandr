@@ -11,12 +11,10 @@ export default class FormView extends Component {
   }
 
   handleFormChange(formData){
-    console.log("CHANGE");
     this.props.actions.updateForm(formData);
   }
 
   handleSubmit(){
-    console.log("SUBMIT");
     this.props.actions.submitForm();
     this.props.next();
   }
