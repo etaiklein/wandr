@@ -1,6 +1,13 @@
 import {createAsyncFetch, createAsyncPost} from '../async/async-action';
 import * as ActionTypes from './action-types';
 
+export const updateCurrentLocation = (current_location) => {
+  return {
+    type: ActionTypes.UPDATE_CURRENT_LOCATION,
+    current_location: current_location
+  }
+}
+
 export const fetchDistance = createAsyncPost({
   url: 'https://api.mapbox.com',
   path:  'distances/v1/mapbox/walking',

@@ -55,7 +55,7 @@ export const createAsyncPost = function(options) {
 
   // Actions
 
-  const poster = function(url, params = {}, auth = "") {
+  const poster = function(params = {}) {
     return (dispatch) => {
       dispatch({
         type: action_types[0],

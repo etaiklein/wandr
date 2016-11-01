@@ -9,10 +9,17 @@ const initialState = {
   geocode_loading: false,
   geocode_error: "",
   geocode: [],
+  current_location: []
 }
 
 export default form = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionTypes.UPDATE_CURRENT_LOCATION: 
+      return {
+        ...state,
+        current_location: action.current_location
+      };
 
     case ActionTypes.FETCH_DISTANCE:
       return {

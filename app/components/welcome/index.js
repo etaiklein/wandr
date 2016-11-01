@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
-import { fetchGeocode, fetchDistance } from '../../redux/location/action-creators'
+import { fetchGeocode, fetchDistance, updateCurrentLocation } from '../../redux/location/action-creators'
 
 import { Form,
   Separator,InputField, LinkField,
@@ -18,13 +18,32 @@ class Welcome extends Component {
     super(props);
   }
 
+  watchID: ?number = null;
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
+    });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
   handleFormChange(formData){
     this.props.updateForm(formData);
   }
 
   handleSubmit(){
     this.props.dispatch(fetchGeocode(this.props.form.location));
-    // this.props.dispatch(fetchDistance(this.props.location.geocode));
+    this.props.dispatch(fetchDistance([this.props.geocode, this.props.current_location]));
     Actions.journey();
   }
 
@@ -114,7 +133,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   form: state.form.formData,
-  location: state.location
+  geocode: state.location.geocode,
+  distance: state.location.distance,
+  current_location: state.location.current_location,
 })
 
 const mapDispatchToProps = dispatch => ({
