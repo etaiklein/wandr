@@ -2,27 +2,17 @@ export const createAsyncFetch = function(options) {
   const {
     url,
     path,
-    label,
+    action_types,
     mapResponse,
     onError,
   } = options;
 
   const queryString = require('query-string');
 
-  // Types
-  //
-
-  const FETCH = `${label}/FETCH`;
-  const FETCH_SUCCESS = `${label}/FETCH_SUCCESS`;
-  const FETCH_FAIL = `${label}/FETCH_FAIL`;
-
-  // Actions
-  // TODO: create more actions as necessary
-
   const fetcher = function(params = {}) {
     return (dispatch) => {
       dispatch({
-        type: FETCH,
+        type: action_types[0],
         params
       });
 
@@ -40,10 +30,10 @@ export const createAsyncFetch = function(options) {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          dispatch({ type: FETCH_SUCCESS, data: mapResponse(data) });
+          dispatch({ type: action_types[1], data: mapResponse(data) });
         })
         .catch(error => {
-          dispatch({ type: FETCH_FAIL, error: error });
+          dispatch({ type: action_types[2], error: error });
         });
     }
   };
@@ -56,27 +46,19 @@ export const createAsyncPost = function(options) {
   const {
     url,
     path,
-    label,
+    action_types,
     mapResponse,
     onError,
   } = options;
 
   const queryString = require('query-string');
 
-  // Types
-  //
-
-  const FETCH = `${label}/FETCH`;
-  const FETCH_SUCCESS = `${label}/FETCH_SUCCESS`;
-  const FETCH_FAIL = `${label}/FETCH_FAIL`;
-
   // Actions
-  // TODO: create more actions as necessary
 
-  const poster = function(params = {}) {
+  const poster = function(url, params = {}, auth = "") {
     return (dispatch) => {
       dispatch({
-        type: FETCH,
+        type: action_types[0],
         params
       });
 
@@ -102,10 +84,10 @@ export const createAsyncPost = function(options) {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          dispatch({ type: FETCH_SUCCESS, data: mapResponse(data) });
+          dispatch({ type: action_types[1], data: mapResponse(data) });
         })
         .catch(error => {
-          dispatch({ type: FETCH_FAIL, error: error });
+          dispatch({ type: action_types[2], error: error });
         });
     }
   };

@@ -3,17 +3,11 @@
 import { combineReducers } from 'redux';
 import routes from './routes';
 import form from './form/reducer';
-import createAsyncReducer from './async/async-reducer';
-
-// ... other reducers
-
-const distance = createAsyncReducer('distance');
-const coordinates = createAsyncReducer('geocode');
+import location from './location/reducer';
 
 export default combineReducers({
   routes,
   form,
-  distance,
-  coordinates,
+  location,
   // ... other reducers
 });
