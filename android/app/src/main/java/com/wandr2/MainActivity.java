@@ -1,6 +1,7 @@
 package com.wandr2;
 
 import com.facebook.react.ReactActivity;
+import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 public class MainActivity extends ReactActivity {
 

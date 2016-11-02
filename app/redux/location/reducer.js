@@ -57,7 +57,7 @@ export default form = (state = initialState, action) => {
         geocode_loaded: true,
         geocode_loading: false,
         geocode_error: null,
-        geocode: action.data,
+        geocode: action.data.reverse(),
       };
 
     case ActionTypes.FETCH_GEOCODE_FAIL:

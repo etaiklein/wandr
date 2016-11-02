@@ -21,6 +21,7 @@ class Welcome extends Component {
   watchID: ?number = null;
 
   componentDidMount() {
+    console.log("mount watch");
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
@@ -29,11 +30,13 @@ class Welcome extends Component {
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
+      //stuff dependent on position change goes here
       this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
     });
   }
 
   componentWillUnmount() {
+    console.log("unmount watch");
     navigator.geolocation.clearWatch(this.watchID);
   }
 
