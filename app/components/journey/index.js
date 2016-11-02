@@ -14,14 +14,12 @@ class Journey extends Component {
     super(props);
   }
 
-  buildAnnotation() {
-    let annotations = [{
-      coordinates: this.props.geocode,
-      type: 'point',
-      id: "destination"
-    }];
-    console.log(annotations);
-    return annotations;
+  travelTime() {
+    console.log(this.props.form.time);
+    console.log(this.props.distance);
+    // let seconds = this.props.location.distance % 60
+    let minutes = Math.ceil(this.props.distance / 60);
+    return `${minutes} min`
   }
 
   render() {
@@ -38,7 +36,7 @@ class Journey extends Component {
           initialZoomLevel={11}
           // onFinishLoadingMap={}
           // onRegionDidChange={}
-          annotations={this.buildAnnotation()}
+          annotations={this.props.annotations}
           userTrackingMode={Mapbox.userTrackingMode.none}
           initialDirection={0}
           rotateEnabled={true}
@@ -50,11 +48,16 @@ class Journey extends Component {
           annotationsAreImmutable
         />
         <View style={styles.innerContainer}>
-          <Text style={styles.reminder}> Alarm in: 
+          <Text style={styles.reminder}> 
+            travel time: 
+            {this.travelTime()}
+          </Text>
+          <Text style={styles.reminder}>
+            leave in:
             {}
           </Text>
           <Text style={styles.reminder}>
-            Walking time:
+            arrive by:
             {}
           </Text>
         </View>
@@ -73,11 +76,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
-    flex: 0.5
+    flex: 0.7
   },
   innerContainer: {
-    flex: 0.5,
-    marginTop: 150,
+    flex: 0.3,
+    marginTop: 20,
     marginHorizontal: 20,
   },
 })
@@ -87,6 +90,7 @@ const mapStateToProps = state => ({
   geocode: state.location.geocode,
   distance: state.location.distance,
   current_location: state.location.current_location,
+  annotations: state.location.annotations,
 })
 
 export default connect(mapStateToProps)(Journey);

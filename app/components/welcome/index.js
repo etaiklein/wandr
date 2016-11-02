@@ -24,14 +24,14 @@ class Welcome extends Component {
     console.log("mount watch");
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
+        this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
       //stuff dependent on position change goes here
-      this.props.dispatch(updateCurrentLocation([position.coords.latitude, position.coords.longitude]));
+      this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
     });
   }
 
@@ -42,12 +42,33 @@ class Welcome extends Component {
 
   handleFormChange(formData){
     this.props.updateForm(formData);
+    this.props.fetchGeocode(this.props.form.location);
+  }
+
+  polylineFormat(ary){
+    return [ary[1], ary[0]]
   }
 
   handleSubmit(){
-    this.props.dispatch(fetchGeocode(this.props.form.location));
-    this.props.dispatch(fetchDistance([this.props.geocode, this.props.current_location]));
-    Actions.journey();
+    let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)] //Google Encoded Polyline format
+    this.props.fetchDistance(route); 
+
+    if (this.props.form.time && this.props.form.location) {
+
+      Actions.journey();
+
+    } else if (this.props.form.location) {
+
+      let formData = Object.assign({}, this.props.form, {
+        time: new Date(Date.now() + 30*60000)
+      });
+      this.props.updateForm(formData);
+      Actions.journey();
+
+    } else {
+
+      alert("please enter a valid address");
+    }
   }
 
   render() {
@@ -68,6 +89,7 @@ class Welcome extends Component {
             <View style={styles.separator}/>
             <TimePickerField 
               date={new Date(Date.now() + 30*60000)}
+              dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
               valueStyle={styles.text}
               ref='time'/>
             <View style={styles.separator__big}/>
@@ -145,11 +167,15 @@ const mapDispatchToProps = dispatch => ({
   updateForm: (data) => {
     dispatch(updateForm(data))
   },
-  submitForm: () => {
-    dispatch(submitForm())
+  fetchGeocode: (data) => {
+    dispatch(fetchGeocode(data))
   },
-  fetchGeocode,
-  fetchDistance
+  fetchDistance: (data) => {
+    dispatch(fetchDistance(data))
+  },
+  updateCurrentLocation: (data) => {
+    dispatch(updateCurrentLocation(data))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
