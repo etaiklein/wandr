@@ -15,9 +15,6 @@ class Journey extends Component {
   }
 
   travelTime() {
-    console.log(this.props.form.time);
-    console.log(this.props.distance);
-    // let seconds = this.props.location.distance % 60
     let minutes = Math.ceil(this.props.distance / 60);
     return `${minutes} min`
   }
@@ -33,6 +30,22 @@ class Journey extends Component {
     return `${this.props.form.time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
   }
 
+  updateMap() {
+    if (!this.props || !this.props.geocode) {return}
+
+    this._map.setVisibleCoordinateBounds(
+      this.props.current_location[0], 
+      this.props.current_location[1], 
+      this.props.geocode[0], 
+      this.props.geocode[1], 
+      150, //paddingTop
+      50,  //paddingRight
+      50,  //paddingBottom
+      50,  //paddingLeft
+      true //animation
+    );
+  }
+
   render() {
     const { state, actions } = this.props;
     return (
@@ -40,13 +53,12 @@ class Journey extends Component {
         <MapView
           ref={map => { this._map = map; }}
           style={styles.map}
+          onUpdateUserLocation={() => this.updateMap()}
           initialCenterCoordinate={{
-            latitude: 40.731982923355005,
-            longitude: -73.99518334071513
+            latitude: this.props.current_location[0],
+            longitude: this.props.current_location[1]
           }}
           initialZoomLevel={11}
-          // onFinishLoadingMap={}
-          // onRegionDidChange={}
           annotations={this.props.annotations}
           userTrackingMode={Mapbox.userTrackingMode.none}
           initialDirection={0}
@@ -55,7 +67,7 @@ class Journey extends Component {
           zoomEnabled={true}
           logoIsHidden={true}
           showsUserLocation={true}
-          styleURL={Mapbox.mapStyles.light}
+          styleURL={Mapbox.mapStyles.bright}
           annotationsAreImmutable
         />
         <View style={styles.innerContainer}>
@@ -86,7 +98,7 @@ class Journey extends Component {
 const styles = StyleSheet.create({
 
   title: {
-    fontSize: 40,
+    fontSize: 30,
     textAlign: 'center'
   },
   time: {
