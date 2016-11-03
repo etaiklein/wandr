@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, InteractionManager} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 
@@ -20,6 +20,17 @@ class Journey extends Component {
     // let seconds = this.props.location.distance % 60
     let minutes = Math.ceil(this.props.distance / 60);
     return `${minutes} min`
+  }
+
+  leaveAt() {
+    if (!this.props.form.time) {return ''}
+    let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+    return `${new Date(time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
+  }
+
+  arriveBefore() {
+    if (!this.props.form.time) {return ''}
+    return `${this.props.form.time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
   }
 
   render() {
@@ -48,17 +59,23 @@ class Journey extends Component {
           annotationsAreImmutable
         />
         <View style={styles.innerContainer}>
-          <Text style={styles.reminder}> 
+          <Text style={styles.title}> 
             travel time: 
-            {this.travelTime()}
+            <Text style={styles.time}> 
+              {this.travelTime()}
+            </Text>
           </Text>
-          <Text style={styles.reminder}>
-            leave in:
-            {}
+          <Text style={styles.title}>
+            leave at:
+             <Text style={styles.time}> 
+              {this.leaveAt()}
+            </Text>
           </Text>
-          <Text style={styles.reminder}>
-            arrive by:
-            {}
+          <Text style={styles.title}>
+            arrive before:
+            <Text style={styles.time}> 
+              {this.arriveBefore()}
+            </Text>
           </Text>
         </View>
       </View>
@@ -68,9 +85,12 @@ class Journey extends Component {
 
 const styles = StyleSheet.create({
 
-  reminder: {
+  title: {
     fontSize: 40,
     textAlign: 'center'
+  },
+  time: {
+    fontWeight: 'bold',
   },
   container: {
     flex: 1

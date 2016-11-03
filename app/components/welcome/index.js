@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, InteractionManager} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
 import { fetchGeocode, fetchDistance, updateCurrentLocation } from '../../redux/location/action-creators'
@@ -30,19 +30,21 @@ class Welcome extends Component {
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      //stuff dependent on position change goes here
+      let route = [this.polylineFormat(this.props.geocode), [position.coords.longitude, position.coords.latitude]] //Google Encoded Polyline format
+      this.props.fetchDistance(route); 
       this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
     });
   }
 
   componentWillUnmount() {
-    console.log("unmount watch");
     navigator.geolocation.clearWatch(this.watchID);
   }
 
   handleFormChange(formData){
-    this.props.updateForm(formData);
-    this.props.fetchGeocode(this.props.form.location);
+    InteractionManager.runAfterInteractions(() => {
+      this.props.updateForm(formData);
+      this.props.fetchGeocode(this.props.form.location);
+    });
   }
 
   polylineFormat(ary){
@@ -50,25 +52,24 @@ class Welcome extends Component {
   }
 
   handleSubmit(){
-    let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)] //Google Encoded Polyline format
-    this.props.fetchDistance(route); 
+    InteractionManager.runAfterInteractions(() => {
+      let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)] //Google Encoded Polyline format
+      this.props.fetchDistance(route); 
 
-    if (this.props.form.time && this.props.form.location) {
+      if (!this.props.form.time) {
+        let formData = Object.assign({}, this.props.form, {
+          time: new Date(Date.now() + 30*60000)
+        });
+        this.props.updateForm(formData);
+      }
 
-      Actions.journey();
+      if (this.props.form.location) {
+        Actions.journey();
+      } else {
+        alert("please enter a valid address");
+      }
+    });
 
-    } else if (this.props.form.location) {
-
-      let formData = Object.assign({}, this.props.form, {
-        time: new Date(Date.now() + 30*60000)
-      });
-      this.props.updateForm(formData);
-      Actions.journey();
-
-    } else {
-
-      alert("please enter a valid address");
-    }
   }
 
   render() {
