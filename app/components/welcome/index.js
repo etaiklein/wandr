@@ -7,6 +7,8 @@ import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
 import { fetchGeocode, fetchDistance, updateCurrentLocation } from '../../redux/location/action-creators'
 
+var PushNotification = require('react-native-push-notification');
+
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
@@ -21,7 +23,6 @@ class Welcome extends Component {
   watchID: ?number = null;
 
   componentDidMount() {
-    console.log("mount watch");
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
@@ -34,7 +35,19 @@ class Welcome extends Component {
       this.props.fetchDistance(route); 
       this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
     });
-  }
+
+      setInterval(() => {
+        if (!this.props.form || !this.props.form.time || !this.props.distance) {return}
+        let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+        if (time < new Date().getTime()){
+          PushNotification.localNotification({
+            message: "time to go!", // (required)
+            playSound: true, // (optional) default: true
+            soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+          });
+        }
+      }, 60000);
+    }
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
