@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
-import {Alert} from 'react-native';
+import {Alert } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 import configureStore from '../redux/configure-store';
 import {notificationSent, notificationReceived} from '../redux/notification/action-creators'
+
 
 const store = configureStore();
 var PushNotification = require('react-native-push-notification');

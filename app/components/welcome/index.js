@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Text, View, TouchableOpacity, StyleSheet, InteractionManager} from 'react-native';
+import {Text, View, ScrollView, TouchableOpacity, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
 import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators'
@@ -23,20 +23,22 @@ class Welcome extends Component {
   watchID: ?number = null;
 
   componentDidMount() {
-    //get current location
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      let current_location = this.polylineFormat(position.coords);
-      this.props.updateCurrentLocation(current_location);
-      let route = [this.polylineFormat(this.props.geocode), current_location]
-      this.props.fetchDistance(route);
-      this.setPushNotificationSchedule();
+    InteractionManager.runAfterInteractions(() => {
+      //get current location
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
+        },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+      this.watchID = navigator.geolocation.watchPosition((position) => {
+        let current_location = this.polylineFormat(position.coords);
+        let route = [this.polylineFormat(this.props.geocode), current_location]
+        this.props.updateCurrentLocation(current_location);
+        this.props.fetchDistance(route);
+        this.setPushNotificationSchedule();
+      });
     });
   }
 
@@ -97,7 +99,7 @@ class Welcome extends Component {
   render() {
     return (
       <View style={styles.outerContainer}>
-        <View style={styles.innerContainer}>
+        <ScrollView style={styles.innerContainer}>
           <Form
             style={styles.form}
             ref='welcomeForm'
@@ -115,9 +117,8 @@ class Welcome extends Component {
               dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
               valueStyle={styles.text}
               ref='time'/>
-            <View style={styles.separator__big}/>
           </Form>
-        </View>
+        </ScrollView>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={this.handleSubmit.bind(this)}>
             <Text style={styles.buttonText}>Wander!</Text>
@@ -131,27 +132,25 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 40,
+    fontSize: 15 * PixelRatio.getFontScale(),
     textAlign: 'center'
   },
   outerContainer: {
+    marginTop: 80,
     flex: 1,
   },
   innerContainer: {
-    marginTop: 150,
-    marginHorizontal: 20,
+    marginTop: 20,
+    marginBottom: 100
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 20,
+    fontSize: 10 * PixelRatio.getFontScale(),
     color: 'black',
     textAlign: 'right'
   },
   separator: {
     marginTop: 30
-  },
-  separator__big: {
-    marginTop: 60
   },
   buttonContainer: {
     position: 'absolute',
@@ -169,11 +168,12 @@ const styles = StyleSheet.create({
     borderRadius:4, 
     borderWidth: 2,
     borderColor: '#007aff',
+    backgroundColor: 'white'
   },
   buttonText: {
     color: '#007aff',
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 20,
+    fontSize: 10 * PixelRatio.getFontScale(),
     fontWeight: 'bold',
     textAlign: 'center',
   }

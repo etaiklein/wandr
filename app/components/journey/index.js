@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import {View, Text, StyleSheet, InteractionManager} from 'react-native';
+import {View, Text, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 
@@ -31,18 +31,20 @@ class Journey extends Component {
   }
 
   updateMap() {
-    if (!this.props || !this.props.geocode.latitude) {return}
-    this._map.setVisibleCoordinateBounds(
-      this.props.current_location.latitude, 
-      this.props.current_location.longitude, 
-      this.props.geocode.latitude, 
-      this.props.geocode.longitude, 
-      150, //paddingTop
-      50,  //paddingRight
-      50,  //paddingBottom
-      50,  //paddingLeft
-      true //animation
-    );
+    InteractionManager.runAfterInteractions(() => {
+      if (!this._map || !this.props || !this.props.geocode.latitude) {return}
+      this._map.setVisibleCoordinateBounds(
+        this.props.current_location.latitude, 
+        this.props.current_location.longitude, 
+        this.props.geocode.latitude, 
+        this.props.geocode.longitude, 
+        150, //paddingTop
+        50,  //paddingRight
+        50,  //paddingBottom
+        50,  //paddingLeft
+        true //animation
+      );
+    });
   }
 
   render() {
@@ -97,7 +99,7 @@ class Journey extends Component {
 const styles = StyleSheet.create({
 
   title: {
-    fontSize: 30,
+    fontSize: 10 * PixelRatio.getFontScale(),
     textAlign: 'center'
   },
   time: {
