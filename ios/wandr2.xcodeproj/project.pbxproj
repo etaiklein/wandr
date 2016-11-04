@@ -26,6 +26,7 @@
 		980CD0EB1DCA9DD400AB451F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0EA1DCA9DD400AB451F /* Mapbox.framework */; };
 		980CD0EC1DCA9DD400AB451F /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0EA1DCA9DD400AB451F /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		980CD0EF1DCA9E1900AB451F /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0D91DCA9D5400AB451F /* libRCTMapboxGL.a */; };
+		98B340E01DCAEBAB0013C8C0 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B340DA1DCAEB970013C8C0 /* libRCTPushNotification.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,13 @@
 			remoteGlobalIDString = C5DBB34B1AF2EF2B00E611A9;
 			remoteInfo = RCTMapboxGLTests;
 		};
+		98B340D91DCAEB970013C8C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -160,6 +168,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		980CD0CF1DCA9D5400AB451F /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		980CD0EA1DCA9DD400AB451F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98B340E01DCAEBAB0013C8C0 /* libRCTPushNotification.a in Frameworks */,
 				980CD0EF1DCA9E1900AB451F /* libRCTMapboxGL.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -325,6 +335,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */,
 				980CD0EA1DCA9DD400AB451F /* Mapbox.framework */,
 				13B07FAE1A68108700A75B9A /* wandr2 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -349,6 +360,14 @@
 			children = (
 				980CD0D91DCA9D5400AB451F /* libRCTMapboxGL.a */,
 				980CD0DB1DCA9D5400AB451F /* RCTMapboxGLTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98B340CF1DCAEB970013C8C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98B340DA1DCAEB970013C8C0 /* libRCTPushNotification.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -444,6 +463,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = 98B340CF1DCAEB970013C8C0 /* Products */;
+					ProjectRef = 98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -557,6 +580,13 @@
 			fileType = wrapper.cfbundle;
 			path = RCTMapboxGLTests.xctest;
 			remoteRef = 980CD0DA1DCA9D5400AB451F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		98B340DA1DCAEB970013C8C0 /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = 98B340D91DCAEB970013C8C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -694,6 +724,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = wandr2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -720,6 +751,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = wandr2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -12,6 +12,7 @@
     "react-native": "0.35.0",
     "react-native-form-generator": "^0.9.9",
     "react-native-mapbox-gl": "^5.0.0",
+    "react-native-push-notification": "^2.2.0",
     "react-native-router-flux": "^3.36.0",
     "react-redux": "4.4.5",
     "redux": "3.5.2",
