@@ -19,7 +19,7 @@ PushNotification.configure({
       notification.title, 
       notification.message,
       [
-        {text: '🗺👀', onPress: () => console.log(notification)},
+        {text: '🗺👀', onPress: () => console.log('TODO: open maps')},
         {text: '👌', onPress: () => console.log('OK Pressed')},
       ]);
   },
