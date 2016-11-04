@@ -31,13 +31,12 @@ class Journey extends Component {
   }
 
   updateMap() {
-    if (!this.props || !this.props.geocode) {return}
-
+    if (!this.props || !this.props.geocode.latitude) {return}
     this._map.setVisibleCoordinateBounds(
-      this.props.current_location[0], 
-      this.props.current_location[1], 
-      this.props.geocode[0], 
-      this.props.geocode[1], 
+      this.props.current_location.latitude, 
+      this.props.current_location.longitude, 
+      this.props.geocode.latitude, 
+      this.props.geocode.longitude, 
       150, //paddingTop
       50,  //paddingRight
       50,  //paddingBottom
@@ -55,8 +54,8 @@ class Journey extends Component {
           style={styles.map}
           onUpdateUserLocation={() => this.updateMap()}
           initialCenterCoordinate={{
-            latitude: this.props.current_location[0],
-            longitude: this.props.current_location[1]
+            latitude: this.props.current_location.latitude,
+            longitude: this.props.current_location.longitude
           }}
           initialZoomLevel={11}
           annotations={this.props.annotations}

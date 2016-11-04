@@ -8,18 +8,27 @@ const initialState = {
   geocode_loaded: false,
   geocode_loading: false,
   geocode_error: "",
-  geocode: [],
-  current_location: [],
+  geocode: {
+    latitude: '',
+    longitude: ''
+  },
+  current_location: {
+    latitude: '',
+    longitude: ''
+  },
   annotations: [],
 }
 
-export default form = (state = initialState, action) => {
+export default location = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionTypes.UPDATE_CURRENT_LOCATION: 
       return Object.assign({}, state, {
         ...state,
-        current_location: action.current_location
+        current_location: {
+          latitude: action.current_location[1],
+          longitude: action.current_location[0]
+        }
       });
 
     case ActionTypes.FETCH_DISTANCE:
@@ -58,9 +67,12 @@ export default form = (state = initialState, action) => {
         geocode_loaded: true,
         geocode_loading: false,
         geocode_error: null,
-        geocode: action.data.reverse(), //(long, lat) to Standard Format (lat, long)
+        geocode: {
+          latitude: action.data[1],
+          longitude: action.data[0]
+        },
         annotations: [{
-          coordinates: action.data, //(long, lat) to Standard Format (lat, long)
+          coordinates: action.data.reverse(), //(long, lat) to Standard Format (lat, long)
           type: 'point',
           id: "destination"
         }]
@@ -71,6 +83,20 @@ export default form = (state = initialState, action) => {
         ...state,
         geocode_loading: false,
         geocode_error: action.error,
+      });
+
+    case ActionTypes.SET_GEOCODE:
+      return Object.assign({}, state, {
+        ...state,
+        geocode: {
+          latitude: action.geocode[1],
+          longitude: action.geocode[0]
+        },
+        annotations: [{
+          coordinates: action.geocode.reverse(),
+          type: 'point',
+          id: "destination"
+        }]
       });
 
     default:

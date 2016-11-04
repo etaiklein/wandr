@@ -5,23 +5,24 @@ import thunk from 'redux-thunk';
 import {Alert} from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 import configureStore from '../redux/configure-store';
-import {fetchDistance, fetchGeocode} from '../redux/location/action-creators';
+import {notificationSent, notificationReceived} from '../redux/notification/action-creators'
 
 const store = configureStore();
-// store.dispatch(fetchGeocode('1600+Pennsylvania+Ave+nw'));
-// store.dispatch(fetchDistance([[-77.083056,38.908611],[-76.997778,38.959167]]));
 var PushNotification = require('react-native-push-notification');
+
 PushNotification.configure({
   // (required) Called when a remote or local notification is opened or received
   onNotification: function(notification) {
-    console.log( 'NOTIFICATION:', notification );
+    if (!store.getState().notification.notify) {return} //singleton notification
     Alert.alert(
       notification.title, 
       notification.message,
       [
-        {text: '🗺👀', onPress: () => console.log('TODO: open maps')},
-        {text: '👌', onPress: () => console.log('OK Pressed')},
-      ]);
+        {text: '🗺👀', onPress: () => store.dispatch(notificationReceived())},
+        {text: '👌', onPress: () => store.dispatch(notificationReceived())},
+      ]
+    );
+    store.dispatch(notificationSent());
   },
 });
 

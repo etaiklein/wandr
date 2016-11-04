@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {Text, View, TouchableOpacity, StyleSheet, InteractionManager} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators'
-import { fetchGeocode, fetchDistance, updateCurrentLocation } from '../../redux/location/action-creators'
+import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators'
 
 var PushNotification = require('react-native-push-notification');
 
@@ -23,6 +23,7 @@ class Welcome extends Component {
   watchID: ?number = null;
 
   componentDidMount() {
+    //get current location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
@@ -31,17 +32,11 @@ class Welcome extends Component {
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      let route = [this.polylineFormat(this.props.geocode), [position.coords.longitude, position.coords.latitude]] //Google Encoded Polyline format
-      this.props.fetchDistance(route); 
-      this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
-      //update push notification time
-      if (!this.props.form || !this.props.form.time || !this.props.distance) {return}
-      let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
-      PushNotification.cancelAllLocalNotifications()
-      PushNotification.localNotificationSchedule({
-        message: "time to go!", // (required)
-        date: new Date(time)
-      });
+      let current_location = this.polylineFormat(position.coords);
+      this.props.updateCurrentLocation(current_location);
+      let route = [this.polylineFormat(this.props.geocode), current_location]
+      this.props.fetchDistance(route);
+      this.setPushNotificationSchedule();
     });
   }
 
@@ -56,13 +51,34 @@ class Welcome extends Component {
     });
   }
 
-  polylineFormat(ary){
-    return [ary[1], ary[0]]
+  polylineFormat(location){
+    return [location.longitude, location.latitude];
+  }
+
+  classicFormat(location){
+    return [location.latitude, location.longitude];
+  }
+
+  setPushNotificationSchedule() {
+    if (!this.props.form || !this.props.form.time || !this.props.distance) {return}
+    let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+    PushNotification.cancelAllLocalNotifications() //clear
+    PushNotification.localNotificationSchedule({
+      message: "time to go!", // (required)
+      date: new Date(time)
+    });
   }
 
   handleSubmit(){
     InteractionManager.runAfterInteractions(() => {
-      let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)] //Google Encoded Polyline format
+      
+      let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)]
+      
+      if (this.props.geocode.latitude === '') {
+        this.props.setGeocode(this.polylineFormat(this.props.current_location));
+        route[0] = this.polylineFormat(this.props.current_location);
+      }
+
       this.props.fetchDistance(route); 
 
       if (!this.props.form.time) {
@@ -72,11 +88,8 @@ class Welcome extends Component {
         this.props.updateForm(formData);
       }
 
-      if (this.props.form.location) {
-        Actions.journey();
-      } else {
-        alert("please enter a valid address");
-      }
+      this.setPushNotificationSchedule();
+      Actions.journey();
     });
 
   }
@@ -95,7 +108,7 @@ class Welcome extends Component {
               ref='location' 
               valueStyle={styles.text}
               style={styles.text}
-              placeholder='Location'/>
+              placeholder='Current Location'/>
             <View style={styles.separator}/>
             <TimePickerField 
               date={new Date(Date.now() + 30*60000)}
@@ -130,7 +143,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 25,
+    fontSize: 20,
     color: 'black',
     textAlign: 'right'
   },
@@ -185,7 +198,10 @@ const mapDispatchToProps = dispatch => ({
   },
   updateCurrentLocation: (data) => {
     dispatch(updateCurrentLocation(data))
-  }
+  },
+  setGeocode: (location) => {
+    dispatch(setGeocode(location))
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

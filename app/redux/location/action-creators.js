@@ -8,6 +8,14 @@ export const updateCurrentLocation = (current_location) => {
   }
 }
 
+export const setGeocode = (geocode) => {
+  return {
+    type: ActionTypes.SET_GEOCODE,
+    geocode: geocode,
+    annotations: []
+  }
+}
+
 export const fetchDistance = createAsyncPost({
   url: 'https://api.mapbox.com',
   path:  'distances/v1/mapbox/walking',
