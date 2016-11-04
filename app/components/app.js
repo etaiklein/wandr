@@ -19,7 +19,7 @@ PushNotification.configure({
       notification.title, 
       notification.message,
       [
-        {text: '🗺👀', onPress: () => store.dispatch(notificationReceived())},
+        // {text: '🗺👀', onPress: () => store.dispatch(notificationReceived())},
         {text: '👌', onPress: () => store.dispatch(notificationReceived())},
       ]
     );

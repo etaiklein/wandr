@@ -65,10 +65,11 @@ class Welcome extends Component {
     if (!this.props.form || !this.props.form.time || !this.props.distance) {return}
     let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
     PushNotification.cancelAllLocalNotifications() //clear
-    PushNotification.localNotificationSchedule({
-      message: "time to go!", // (required)
-      date: new Date(time)
-    });
+    if (new Date(time) > new Date())
+      PushNotification.localNotificationSchedule({
+        message: "time to go!", // (required)
+        date: new Date(time)
+      });
   }
 
   handleSubmit(){

@@ -15,19 +15,31 @@ class Journey extends Component {
   }
 
   travelTime() {
-    let minutes = Math.ceil(this.props.distance / 60);
-    return `${minutes} min`
+    return Math.ceil(this.props.distance / 60);
+    
   }
 
-  leaveAt() {
+  travelTimeString() {
+    return `${this.travelTime()} min`
+  }
+
+  leaveTime() {
+    return this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000
+  }
+
+  leaveTimeString() {
     if (!this.props.form.time) {return ''}
-    let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+    let time = this.leaveTime();
     return `${new Date(time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
   }
 
   arriveBefore() {
     if (!this.props.form.time) {return ''}
     return `${this.props.form.time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
+  }
+
+  isLate() {
+    return this.leaveTime() < new Date();
   }
 
   updateMap() {
@@ -39,9 +51,9 @@ class Journey extends Component {
         this.props.geocode.latitude, 
         this.props.geocode.longitude, 
         150, //paddingTop
-        50,  //paddingRight
-        50,  //paddingBottom
-        50,  //paddingLeft
+        150,  //paddingRight
+        150,  //paddingBottom
+        150,  //paddingLeft
         true //animation
       );
     });
@@ -63,9 +75,9 @@ class Journey extends Component {
           annotations={this.props.annotations}
           userTrackingMode={Mapbox.userTrackingMode.none}
           initialDirection={0}
-          rotateEnabled={true}
-          scrollEnabled={true}
-          zoomEnabled={true}
+          rotateEnabled={false}
+          scrollEnabled={false}
+          zoomEnabled={false}
           logoIsHidden={true}
           showsUserLocation={true}
           styleURL={Mapbox.mapStyles.bright}
@@ -75,13 +87,13 @@ class Journey extends Component {
           <Text style={styles.title}> 
             travel time: 
             <Text style={styles.time}> 
-              {this.travelTime()}
+              {this.travelTimeString()}
             </Text>
           </Text>
-          <Text style={styles.title}>
+          <Text style={[styles.title, this.isLate() ? styles.late : {}]}>
             leave at:
              <Text style={styles.time}> 
-              {this.leaveAt()}
+              {this.leaveTimeString()}
             </Text>
           </Text>
           <Text style={styles.title}>
@@ -99,7 +111,7 @@ class Journey extends Component {
 const styles = StyleSheet.create({
 
   title: {
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 12 * PixelRatio.getFontScale(),
     textAlign: 'center'
   },
   time: {
@@ -110,6 +122,9 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 0.7
+  },
+  late: {
+    color: 'red',
   },
   innerContainer: {
     flex: 0.3,
