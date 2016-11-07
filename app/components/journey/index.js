@@ -68,8 +68,8 @@ class Journey extends Component {
           style={styles.map}
           onUpdateUserLocation={() => this.updateMap()}
           initialCenterCoordinate={{
-            latitude: this.props.current_location.latitude,
-            longitude: this.props.current_location.longitude
+            latitude: 39.14,
+            longitude: -77.15
           }}
           initialZoomLevel={11}
           annotations={this.props.annotations}
