@@ -2,11 +2,22 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Text, View, ScrollView, TouchableOpacity, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
+import {Text, 
+  View, 
+  ScrollView, 
+  TouchableOpacity, 
+  StyleSheet, 
+  InteractionManager, 
+  PixelRatio, 
+  TimePickerAndroid, 
+  TouchableWithoutFeedback, 
+  Platform, 
+  TextInput, 
+  DatePickerIOS} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { updateForm, submitForm } from '../../redux/form/action-creators'
-import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators'
-
+import { updateForm, submitForm } from '../../redux/form/action-creators';
+import { fetchGeocode, 
+  fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
 var PushNotification = require('react-native-push-notification');
 
 import { Form,
@@ -44,6 +55,12 @@ class Welcome extends Component {
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  handleLocationChange(event){
+    handleFormChange({
+      location: event.nativeEvent.text
+    })
   }
 
   handleFormChange(formData){
@@ -97,28 +114,74 @@ class Welcome extends Component {
 
   }
 
+  onDateChange(date) {
+    console.log(date);
+  }
+
+  formatTime(hour, minute) {
+    return hour + ':' + (minute < 10 ? '0' + minute : minute);
+  }
+
+  async showPicker(options){
+    try {
+      const {action, minute, hour} = await TimePickerAndroid.open(options);
+      if (action === TimePickerAndroid.timeSetAction) {
+        let timeString = this.formatTime(hour, minute);
+        let date = new Date();
+        date.setHours(hour);
+        date.setMinutes(minute);
+        let formData = Object.assign({}, this.props.form, {
+          time: date,
+          timeString: timeString
+        });
+        return this.props.updateForm(formData);
+      } else {
+        return "";
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     return (
       <View style={styles.outerContainer}>
         <ScrollView style={styles.innerContainer}>
-          <Form
-            style={styles.form}
-            ref='welcomeForm'
-            onChange={this.handleFormChange.bind(this)}>
-            <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
-            <View style={styles.separator}/>
-            <InputField 
-              ref='location' 
-              valueStyle={styles.text}
-              style={styles.text}
-              placeholder='Current Location'/>
-            <View style={styles.separator}/>
-            <TimePickerField 
-              date={new Date(Date.now() + 30*60000)}
-              dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
-              valueStyle={styles.text}
-              ref='time'/>
-          </Form>
+          {(Platform.OS === 'ios') && 
+            <Form
+              style={styles.form}
+              ref='welcomeForm'
+              onChange={this.handleFormChange.bind(this)}>
+              <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
+              <View style={styles.separator}/>
+              <InputField 
+                ref='location' 
+                valueStyle={styles.text}
+                style={styles.text}
+                placeholder='Current Location'/>
+              <View style={styles.separator}/>
+              <TimePickerField 
+                date={new Date(Date.now() + 30*60000)}
+                dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
+                valueStyle={styles.text}
+                ref='time'/>
+            </Form>
+          }
+          {(Platform.OS === 'android') && 
+            <View>
+              <TextInput
+                autoCorrect={true}
+                onChange={this.handleLocationChange}
+              />
+              <View style={styles.separator}/>
+              <View title="TimePickerAndroid">
+                <TouchableOpacity
+                  onPress={this.showPicker.bind(this, {})}>
+                  <Text style={styles.text}>{this.props.form.timeString || new Date().toTimeString()}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          }
         </ScrollView>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={this.handleSubmit.bind(this)}>
