@@ -18,6 +18,7 @@ import { Actions } from 'react-native-router-flux';
 import { updateForm, submitForm } from '../../redux/form/action-creators';
 import { fetchGeocode, 
   fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
+import {colors} from '../colors'
 var PushNotification = require('react-native-push-notification');
 
 import { Form,
@@ -45,8 +46,9 @@ class Welcome extends Component {
       );
       this.watchID = navigator.geolocation.watchPosition((position) => {
         let current_location = this.polylineFormat(position.coords);
-        let route = [this.polylineFormat(this.props.geocode), current_location]
         this.props.updateCurrentLocation(current_location);
+        if (this.props.geocode[0] === "") {return}
+        let route = [this.polylineFormat(this.props.geocode), current_location]
         this.props.fetchDistance(route);
         this.setPushNotificationSchedule();
       });
@@ -144,6 +146,7 @@ class Welcome extends Component {
   };
 
   render() {
+    console.log(colors.CTA);
     return (
       <View style={styles.outerContainer}>
         <ScrollView style={styles.innerContainer}>
@@ -157,6 +160,7 @@ class Welcome extends Component {
               <InputField 
                 ref='location' 
                 valueStyle={styles.text}
+                placeholderStyle={styles.text}
                 style={styles.text}
                 placeholder='Current Location'/>
               <View style={styles.separator}/>
@@ -164,12 +168,15 @@ class Welcome extends Component {
                 date={new Date(Date.now() + 30*60000)}
                 dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
                 valueStyle={styles.text}
+                placeholderStyle={styles.text}
+                style={styles.text}
                 ref='time'/>
             </Form>
           }
           {(Platform.OS === 'android') && 
             <View>
               <TextInput
+                style={styles.text}
                 autoCorrect={true}
                 onChange={this.handleLocationChange}
               />
@@ -183,11 +190,11 @@ class Welcome extends Component {
             </View>
           }
         </ScrollView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={this.handleSubmit.bind(this)}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={this.handleSubmit.bind(this)}>
+          <View style={styles.button}>
             <Text style={styles.buttonText}>Wander!</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -200,17 +207,20 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   outerContainer: {
-    marginTop: 80,
+    paddingTop: 80,
     flex: 1,
+    backgroundColor: colors.white,
   },
   innerContainer: {
     marginTop: 20,
-    marginBottom: 100
+    marginBottom: 100,
+    backgroundColor: colors.white,
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
     fontSize: 10 * PixelRatio.getFontScale(),
-    color: 'black',
+    color: colors.primary,
+    backgroundColor: colors.white,
     textAlign: 'right'
   },
   separator: {
@@ -231,11 +241,11 @@ const styles = StyleSheet.create({
     height:45, 
     borderRadius:4, 
     borderWidth: 2,
-    borderColor: '#007aff',
-    backgroundColor: 'white'
+    borderColor: colors.CTA,
+    backgroundColor: colors.white
   },
   buttonText: {
-    color: '#007aff',
+    color: colors.CTA,
     fontFamily: 'HelveticaNeue-Medium',
     fontSize: 10 * PixelRatio.getFontScale(),
     fontWeight: 'bold',

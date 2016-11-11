@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {View, Text, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
+import {colors} from '../colors'
 
 Mapbox.setAccessToken('pk.eyJ1IjoiaXRzZXRhaSIsImEiOiJjaXNneGxxNHQwMDE4MnRwaXBxbnFvbzFwIn0.vWdz0wM8qWICZblz22hWGw');
 
@@ -84,24 +85,28 @@ class Journey extends Component {
           annotationsAreImmutable
         />
         <View style={styles.innerContainer}>
-          <Text style={styles.title}> 
-            travel time: 
-            <Text style={styles.time}> 
+          <Text style={[styles.leave_at, this.isLate() ? styles.late : {}]}>
+            leave at:
+          </Text>
+          <Text style={[styles.leave_at_time, this.isLate() ? styles.late : {}]}> 
+            {this.leaveTimeString()}
+          </Text>
+          <View style={styles.time_table}>
+            <Text style={styles.more_info}> 
+              travel time: 
+            </Text>
+            <Text style={styles.more_info_time}> 
               {this.travelTimeString()}
             </Text>
-          </Text>
-          <Text style={[styles.title, this.isLate() ? styles.late : {}]}>
-            leave at:
-             <Text style={styles.time}> 
-              {this.leaveTimeString()}
+          </View>
+          <View style={styles.time_table}>
+            <Text style={styles.more_info}>
+              arrive before:
             </Text>
-          </Text>
-          <Text style={styles.title}>
-            arrive before:
-            <Text style={styles.time}> 
+            <Text style={styles.more_info_time}> 
               {this.arriveBefore()}
             </Text>
-          </Text>
+          </View>
         </View>
       </View>
     );
@@ -109,27 +114,48 @@ class Journey extends Component {
 }
 
 const styles = StyleSheet.create({
-
-  title: {
+  //TEXT
+  leave_at: {
+    color: colors.primary,
     fontSize: 12 * PixelRatio.getFontScale(),
-    textAlign: 'center'
   },
-  time: {
+  leave_at_time: {
+    color: colors.primary,
+    fontSize: 35 * PixelRatio.getFontScale(),
+    textAlign: 'center',
+  },
+  more_info: {
+    color: colors.primary,
+    fontSize: 10 * PixelRatio.getFontScale(),
+    justifyContent: 'flex-start',
+    flex: 0.5,
+  },
+  more_info_time: {
+    color: colors.primary,
+    fontSize: 10 * PixelRatio.getFontScale(),
     fontWeight: 'bold',
-  },
-  container: {
-    flex: 1
-  },
-  map: {
-    flex: 0.7
+    textAlign: 'right',
+    justifyContent: 'flex-end',
+    flex: 0.5,
   },
   late: {
-    color: 'red',
+    color: colors.error,
+  },
+  time_table: {
+    flexDirection: 'row',
+  },
+
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  map: {
+    flex: 1,
   },
   innerContainer: {
-    flex: 0.3,
-    marginTop: 20,
-    marginHorizontal: 20,
+    padding: 20,
+    justifyContent: 'flex-end',
+    backgroundColor: colors.background
   },
 })
 
