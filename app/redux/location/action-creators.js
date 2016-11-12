@@ -28,6 +28,6 @@ export const fetchGeocode = createAsyncFetch({
   url: 'https://api.mapbox.com',
   path:  'geocoding/v5/mapbox.places',
   action_types: [ActionTypes.FETCH_GEOCODE, ActionTypes.FETCH_GEOCODE_SUCCESS, ActionTypes.FETCH_GEOCODE_FAIL],
-  mapResponse: (response) => response.features[0].geometry.coordinates,
+  mapResponse: (response) => response.features,
   onError: (response) => response,
 })

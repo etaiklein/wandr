@@ -5,6 +5,7 @@ const initialState = {
   distance_loading: false,
   distance_error: "",
   distance: 0,
+  queries: [],
   geocode_loaded: false,
   geocode_loading: false,
   geocode_error: "",
@@ -68,14 +69,15 @@ export default location = (state = initialState, action) => {
         geocode_loading: false,
         geocode_error: null,
         geocode: {
-          latitude: action.data[1],
-          longitude: action.data[0]
+          latitude: action.data[0].geometry.coordinates[1],
+          longitude: action.data[0].geometry.coordinates[0]
         },
         annotations: [{
-          coordinates: action.data.reverse(), //(long, lat) to Standard Format (lat, long)
+          coordinates: action.data[0].geometry.coordinates.reverse(), //(long, lat) to Standard Format (lat, long)
           type: 'point',
           id: "destination"
-        }]
+        }],
+        queries: action.data,
       });
 
     case ActionTypes.FETCH_GEOCODE_FAIL:

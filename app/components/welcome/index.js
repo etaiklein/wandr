@@ -6,6 +6,7 @@ import {Text,
   View, 
   ScrollView, 
   TouchableOpacity, 
+  TouchableWithoutOpacity, 
   StyleSheet, 
   InteractionManager, 
   PixelRatio, 
@@ -68,6 +69,7 @@ class Welcome extends Component {
   handleLocationChange(event){
     InteractionManager.runAfterInteractions(() => {
       this.props.updateLocation(event);
+      this.props.fetchGeocode(event);
     });
   }
 
@@ -138,9 +140,22 @@ class Welcome extends Component {
     }
   };
 
+  renderQueries() {
+    let queries = [];
+    if (!this.props.queries){return}
+    for (let query of this.props.queries){
+      queries.push(
+        <TouchableOpacity style={styles.queryContainer} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
+          <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
+            {query.place_name}
+          </Text>
+        </TouchableOpacity>
+      )
+    }
+    return <View style={styles.queryList}>{queries}</View>
+  }
+
   render() {
-    console.log(this.props.showPickerIOS);
-    console.log(this.props.location);
     return (
       <View style={styles.outerContainer}>
         <ScrollView style={styles.innerContainer}>
@@ -157,6 +172,7 @@ class Welcome extends Component {
               defaultValue={"Current Location"}
             />
           </View>
+          {this.renderQueries()}
           <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
             <View>
@@ -218,6 +234,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     textAlign: 'center'
   },
+  listText: {
+    fontFamily: 'HelveticaNeue-Medium',
+    fontSize: 8 * PixelRatio.getFontScale(),
+    color: colors.primary,
+  },
+  selectedQuery: {
+    color: colors.CTA
+  },
+  queryContainer: {
+  },
+  queryList: {
+    marginHorizontal: 20
+  },
   textInput: {
     paddingHorizontal: 20,
   },
@@ -253,6 +282,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   location: state.form.location,
+  queries: state.location.queries,
   time: state.form.time,
   geocode: state.location.geocode,
   distance: state.location.distance,
