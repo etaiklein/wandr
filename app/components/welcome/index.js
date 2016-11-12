@@ -15,7 +15,7 @@ import {Text,
   TextInput, 
   DatePickerIOS} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { updateForm, submitForm } from '../../redux/form/action-creators';
+import { updateLocation, updateTime, submitForm, togglePicker } from '../../redux/form/action-creators';
 import { fetchGeocode, 
   fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
 import {colors} from '../colors'
@@ -47,7 +47,7 @@ class Welcome extends Component {
       this.watchID = navigator.geolocation.watchPosition((position) => {
         let current_location = this.polylineFormat(position.coords);
         this.props.updateCurrentLocation(current_location);
-        if (this.props.geocode[0] === "") {return}
+        if (this.props.geocode.latitude === "") {return}
         let route = [this.polylineFormat(this.props.geocode), current_location]
         this.props.fetchDistance(route);
         this.setPushNotificationSchedule();
@@ -59,16 +59,21 @@ class Welcome extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  handleLocationChange(event){
-    handleFormChange({
-      location: event.nativeEvent.text
-    })
+  handleTimeChange(event){
+    InteractionManager.runAfterInteractions(() => {
+      this.props.updateTime(event);
+    });
   }
 
-  handleFormChange(formData){
+  handleLocationChange(event){
     InteractionManager.runAfterInteractions(() => {
-      this.props.updateForm(formData);
-      this.props.fetchGeocode(this.props.form.location);
+      this.props.updateLocation(event);
+    });
+  }
+
+  handleLocationSubmit(event){
+    InteractionManager.runAfterInteractions(() => {
+      this.props.fetchGeocode(this.props.location);
     });
   }
 
@@ -81,8 +86,8 @@ class Welcome extends Component {
   }
 
   setPushNotificationSchedule() {
-    if (!this.props.form || !this.props.form.time || !this.props.distance) {return}
-    let time = this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+    if (!this.props.time || !this.props.distance) {return}
+    let time = new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
     PushNotification.cancelAllLocalNotifications() //clear
     if (new Date(time) > new Date())
       PushNotification.localNotificationSchedule({
@@ -96,28 +101,21 @@ class Welcome extends Component {
       
       let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)]
       
-      if (this.props.geocode.latitude === '') {
+      if (this.props.geocode.latitude === '' || this.props.location === "Current Location") {
         this.props.setGeocode(this.polylineFormat(this.props.current_location));
         route[0] = this.polylineFormat(this.props.current_location);
       }
 
       this.props.fetchDistance(route); 
-
-      if (!this.props.form.time) {
-        let formData = Object.assign({}, this.props.form, {
-          time: new Date(Date.now() + 30*60000)
-        });
-        this.props.updateForm(formData);
-      }
-
       this.setPushNotificationSchedule();
       Actions.journey();
     });
 
   }
 
-  onDateChange(date) {
-    console.log(date);
+  timeString(date) {
+    let time = new Date(date);
+    return this.formatTime(time.getHours(), time.getMinutes());
   }
 
   formatTime(hour, minute) {
@@ -128,15 +126,10 @@ class Welcome extends Component {
     try {
       const {action, minute, hour} = await TimePickerAndroid.open(options);
       if (action === TimePickerAndroid.timeSetAction) {
-        let timeString = this.formatTime(hour, minute);
         let date = new Date();
         date.setHours(hour);
         date.setMinutes(minute);
-        let formData = Object.assign({}, this.props.form, {
-          time: date,
-          timeString: timeString
-        });
-        return this.props.updateForm(formData);
+        return this.props.updateTime(date);
       } else {
         return "";
       }
@@ -146,45 +139,46 @@ class Welcome extends Component {
   };
 
   render() {
-    console.log(colors.CTA);
+    console.log(this.props.showPickerIOS);
+    console.log(this.props.location);
     return (
       <View style={styles.outerContainer}>
         <ScrollView style={styles.innerContainer}>
+          <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
+          <View style={styles.separator}/>
+          <View style={styles.textInput}>
+            <TextInput
+              style={styles.text}
+              autoCorrect={true}
+              selectTextOnFocus={true}
+              onChangeText={this.handleLocationChange.bind(this)}
+              onSubmitEditing={this.handleLocationSubmit.bind(this)}
+              value={this.props.location}
+              defaultValue={"Current Location"}
+            />
+          </View>
+          <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
-            <Form
-              style={styles.form}
-              ref='welcomeForm'
-              onChange={this.handleFormChange.bind(this)}>
-              <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
-              <View style={styles.separator}/>
-              <InputField 
-                ref='location' 
-                valueStyle={styles.text}
-                placeholderStyle={styles.text}
-                style={styles.text}
-                placeholder='Current Location'/>
-              <View style={styles.separator}/>
-              <TimePickerField 
-                date={new Date(Date.now() + 30*60000)}
-                dateTimeFormat={(time) => time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}
-                valueStyle={styles.text}
-                placeholderStyle={styles.text}
-                style={styles.text}
-                ref='time'/>
-            </Form>
+            <View>
+              <TouchableOpacity onPress={() => this.props.togglePicker()}>
+                <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
+              </TouchableOpacity>
+              {this.props.showPickerIOS &&
+                <DatePickerIOS
+                  date={new Date(this.props.time)}
+                  mode="time"
+                  onDateChange={this.handleTimeChange.bind(this)}
+                  minuteInterval={10}
+                />
+              }
+            </View>
           }
           {(Platform.OS === 'android') && 
             <View>
-              <TextInput
-                style={styles.text}
-                autoCorrect={true}
-                onChange={this.handleLocationChange}
-              />
-              <View style={styles.separator}/>
               <View title="TimePickerAndroid">
                 <TouchableOpacity
                   onPress={this.showPicker.bind(this, {})}>
-                  <Text style={styles.text}>{this.props.form.timeString || new Date().toTimeString()}</Text>
+                  <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -209,19 +203,23 @@ const styles = StyleSheet.create({
   outerContainer: {
     paddingTop: 80,
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
   innerContainer: {
     marginTop: 20,
     marginBottom: 100,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 15 * PixelRatio.getFontScale(),
+    height: 40,
     color: colors.primary,
-    backgroundColor: colors.white,
-    textAlign: 'right'
+    backgroundColor: colors.background,
+    textAlign: 'center'
+  },
+  textInput: {
+    paddingHorizontal: 20,
   },
   separator: {
     marginTop: 30
@@ -242,7 +240,7 @@ const styles = StyleSheet.create({
     borderRadius:4, 
     borderWidth: 2,
     borderColor: colors.CTA,
-    backgroundColor: colors.white
+    backgroundColor: colors.background
   },
   buttonText: {
     color: colors.CTA,
@@ -254,15 +252,23 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  form: state.form.formData,
+  location: state.form.location,
+  time: state.form.time,
   geocode: state.location.geocode,
   distance: state.location.distance,
   current_location: state.location.current_location,
+  showPickerIOS: state.form.togglePicker
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateForm: (data) => {
-    dispatch(updateForm(data))
+  updateTime: (time) => {
+    dispatch(updateTime(time))
+  },
+  updateLocation: (data) => {
+    dispatch(updateLocation(data))
+  },
+  togglePicker: () => {
+    dispatch(togglePicker())
   },
   fetchGeocode: (data) => {
     dispatch(fetchGeocode(data))

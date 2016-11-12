@@ -25,18 +25,18 @@ class Journey extends Component {
   }
 
   leaveTime() {
-    return this.props.form.time.getTime() - this.props.distance * 1000 - 60 * 5 * 1000
+    return new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000
   }
 
   leaveTimeString() {
-    if (!this.props.form.time) {return ''}
+    if (!this.props.time) {return ''}
     let time = this.leaveTime();
     return `${new Date(time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
   }
 
   arriveBefore() {
-    if (!this.props.form.time) {return ''}
-    return `${this.props.form.time.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
+    if (!this.props.time) {return ''}
+    return `${new Date(this.props.time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
   }
 
   isLate() {
@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  form: state.form.formData,
+  time: state.form.time,
+  location: state.form.location,
   geocode: state.location.geocode,
   distance: state.location.distance,
   current_location: state.location.current_location,

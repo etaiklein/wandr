@@ -1,2 +1,4 @@
-export const UPDATE_FORM = 'UPDATE_FORM';
+export const UPDATE_LOCATION = 'UPDATE_LOCATION';
+export const UPDATE_TIME = 'UPDATE_TIME';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const TOGGLE_PICKER = 'TOGGLE_PICKER';

@@ -1,12 +1,29 @@
-import { UPDATE_FORM, SUBMIT_FORM } from './action-types'
+import { UPDATE_LOCATION, UPDATE_TIME, SUBMIT_FORM, TOGGLE_PICKER } from './action-types'
 
-export const updateForm = (formData) => {
+export const updateTime = (time, timeString) => {
   return {
-    type: UPDATE_FORM,
+    type: UPDATE_TIME,
     submittedData: false,
-    formData,
+    time: time,
+    timeString: timeString
   }
 }
+
+
+export const togglePicker = () => {
+  return {
+    type: TOGGLE_PICKER,
+  }
+}
+
+export const updateLocation = (location) => {
+  return {
+    type: UPDATE_LOCATION,
+    submittedData: false,
+    location: location,
+  }
+}
+
 
 export const submitForm = () => {
   return {
