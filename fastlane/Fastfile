@@ -29,12 +29,26 @@ platform :ios do
 
     commit_version_bump(
       message: "Deployed new build #{lane_context[SharedValues::BUILD_NUMBER]}",
-      xcodeproj: './ios/AwesomeProject.xcodeproj'
+      xcodeproj: 'ios/wandr2.xcodeproj'
     )
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
   end
+
+  # platform :android do
+  #   desc "Deploy a new version to the Google Play Store"
+  #   lane :alpha do
+  #     gradle(
+  #       task: "assemble",
+  #       build_type: "Release",
+  #       project_dir: "android/"
+  #     )
+  #     supply(
+  #       track: "alpha",
+  #       apk: "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+  #     )
+  #   end
 
   # desc "Deploy a new version to the App Store"
   # lane :release do
