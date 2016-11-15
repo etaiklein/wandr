@@ -145,14 +145,14 @@ class Welcome extends Component {
     if (!this.props.queries){return}
     for (let query of this.props.queries){
       queries.push(
-        <TouchableOpacity style={styles.queryContainer} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
+        <TouchableOpacity key={query.place_name} style={styles.queryContainer} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
           <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
             {query.place_name}
           </Text>
         </TouchableOpacity>
       )
     }
-    return <View style={styles.queryList}>{queries}</View>
+    return <View style={queries.length > 1 && styles.queryList}>{queries}</View>
   }
 
   render() {
@@ -190,14 +190,12 @@ class Welcome extends Component {
             </View>
           }
           {(Platform.OS === 'android') && 
-            <View>
-              <View title="TimePickerAndroid">
-                <TouchableOpacity
-                  onPress={this.showPicker.bind(this, {})}>
-                  <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+          <View>
+            <TouchableOpacity
+              onPress={this.showPicker.bind(this, {})}>
+              <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
+            </TouchableOpacity>
+          </View>
           }
         </ScrollView>
         <TouchableOpacity style={styles.buttonContainer} onPress={this.handleSubmit.bind(this)}>
@@ -213,7 +211,7 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 15 * PixelRatio.getFontScale(),
+    fontSize: 12 * PixelRatio.getFontScale(),
     textAlign: 'center'
   },
   outerContainer: {
@@ -228,8 +226,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 15 * PixelRatio.getFontScale(),
-    height: 40,
+    fontSize: 12 * PixelRatio.getFontScale(),
+    paddingVertical: 10,
     color: colors.primary,
     backgroundColor: colors.background,
     textAlign: 'center'
@@ -245,7 +243,13 @@ const styles = StyleSheet.create({
   queryContainer: {
   },
   queryList: {
-    marginHorizontal: 20
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    borderLeftWidth: 1,
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
+    borderColor: colors.primary,
   },
   textInput: {
     paddingHorizontal: 20,
@@ -264,7 +268,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginHorizontal: 100,
-    padding:10, 
+    paddingTop: 10,
     height:45, 
     borderRadius:4, 
     borderWidth: 2,
