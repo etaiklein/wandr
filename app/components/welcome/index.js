@@ -163,9 +163,10 @@ class Welcome extends Component {
           <View style={styles.separator}/>
           <View style={styles.textInput}>
             <TextInput
-              style={styles.text}
+              style={[styles.text, styles.height]}
               autoCorrect={true}
               selectTextOnFocus={true}
+              numberOfLines={1}
               onChangeText={this.handleLocationChange.bind(this)}
               onSubmitEditing={this.handleLocationSubmit.bind(this)}
               value={this.props.location}
@@ -231,6 +232,9 @@ const styles = StyleSheet.create({
     color: colors.primary,
     backgroundColor: colors.background,
     textAlign: 'center'
+  },
+  height: {
+    height: 45,
   },
   listText: {
     fontFamily: 'HelveticaNeue-Medium',
