@@ -238,7 +238,9 @@ DEPENDENCIES
   fastlane
   gym
   match
+  pem
   pilot
+  supply
 
 BUNDLED WITH
    1.13.6

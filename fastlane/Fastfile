@@ -27,6 +27,11 @@ platform :ios do
     ) # Build your app - more options available
     pilot
 
+    commit_version_bump(
+      message: "Deployed new build #{lane_context[SharedValues::BUILD_NUMBER]}",
+      xcodeproj: './ios/AwesomeProject.xcodeproj'
+    )
+
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
   end
