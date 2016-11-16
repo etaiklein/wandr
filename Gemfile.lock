@@ -240,6 +240,7 @@ DEPENDENCIES
   match
   pem
   pilot
+  snapshot
   supply
 
 BUNDLED WITH

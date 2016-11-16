@@ -3,7 +3,8 @@ apple_id "etaiklein@gmail.com" # Your Apple email address
 
 team_id "YGZ35BXLMB"  # Developer Portal Team ID
 
-
+json_key_file "android/app/credentials.json"
+package_name "com.wandr2"
 
 # you can even provide different app identifiers, Apple IDs and team names per lane:
 # More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

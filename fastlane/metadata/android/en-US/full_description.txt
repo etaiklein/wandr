@@ -1,0 +1,18 @@
+Wandr2 alerts you when to head to your destination based on your current location.
+
+How to use:
+1. You set the time and location of your destination
+2. You wander about stress-free. Buy a coffee. Look at some art. Appreciate the world.
+3. You are alerted to head towards your destination
+
+Under the hood:
+1. wandr2 calculates the time it takes for you to walk from your current location to your destination 
+2. wandr2 sets an alarm 
+3. wandr2 updates the alarm every time your location updates
+
+Use Cases:
+1. You're early to your first day on the job and you want to explore the block. You arrive on time.
+2. You have a reservation at 8pm but you want to go on a walk with your date first. You arrive on time.
+3. You're supposed to meet your friends at the food court in half an hour, but you lose track of time in stores easily.  You arrive on time.
+
+Questions? Feedback? Email etaiklein@gmail.com

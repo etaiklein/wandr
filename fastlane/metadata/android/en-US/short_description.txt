@@ -1,0 +1,1 @@
+wandr2 alerts you when to head to a destination, based on your current location.
