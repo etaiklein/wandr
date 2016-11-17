@@ -183,7 +183,7 @@ class Welcome extends Component {
           <View>
             <TouchableOpacity
               onPress={this.showPicker.bind(this, {})}>
-              <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
+              <Text style={styles.text}>{toTimeString(this.props.time)}</Text>
             </TouchableOpacity>
           </View>
           }
