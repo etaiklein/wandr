@@ -1,4 +1,4 @@
-git_url "https://github.com/etaiklein/wandr.git"
+git_url "https://github.com/etaiklein/wandr-match.git"
 
 type "development"
 shallow_clone "false"
