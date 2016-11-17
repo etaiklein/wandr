@@ -7,13 +7,15 @@ const initialState = {
 export default notification = (state = initialState, action) => {
   switch (action.type) {
     case NOTIFICATION_RECEIVED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         notify: true
-      })
+      }
     case NOTIFICATION_SENT:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         notify: false
-      })
+      }
     default:
       return state
   }

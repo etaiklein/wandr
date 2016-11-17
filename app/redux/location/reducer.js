@@ -1,19 +1,21 @@
 import * as ActionTypes from './action-types'
 
+//TODO: use camelCase
+
 const initialState = {
-  distance_loaded: false,
-  distance_loading: false,
-  distance_error: "",
+  distanceLoaded: false,
+  distanceLoading: false,
+  distanceError: "",
   distance: 0,
   queries: [],
-  geocode_loaded: false,
-  geocode_loading: false,
-  geocode_error: "",
+  geocodeLoaded: false,
+  geocodeLoading: false,
+  geocodeError: "",
   geocode: {
     latitude: '',
     longitude: ''
   },
-  current_location: {
+  currentLocation: {
     latitude: '',
     longitude: ''
   },
@@ -24,50 +26,50 @@ export default location = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionTypes.UPDATE_CURRENT_LOCATION: 
-      return Object.assign({}, state, {
+      return {
         ...state,
-        current_location: {
-          latitude: action.current_location[1],
-          longitude: action.current_location[0]
+        currentLocation: {
+          latitude: action.currentLocation[1],
+          longitude: action.currentLocation[0]
         }
-      });
+      };
 
     case ActionTypes.FETCH_DISTANCE:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        distance_loaded: false,
-        distance_loading: true,
-      });
+        distanceLoaded: false,
+        distanceLoading: true,
+      };
 
     case ActionTypes.FETCH_DISTANCE_SUCCESS:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        distance_loaded: true,
-        distance_loading: false,
-        distance_error: null,
+        distanceLoaded: true,
+        distanceLoading: false,
+        distanceError: null,
         distance: action.data,
-      });
+      };
 
     case ActionTypes.FETCH_DISTANCE_FAIL:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        distance_loading: false,
-        distance_error: action.error,
-      });
+        distanceLoading: false,
+        distanceError: action.error,
+      };
 
     case ActionTypes.FETCH_GEOCODE:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        geocode_loaded: false,
-        geocode_loading: true,
-      });
+        geocodeLoaded: false,
+        geocodeLoading: true,
+      };
 
     case ActionTypes.FETCH_GEOCODE_SUCCESS:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        geocode_loaded: true,
-        geocode_loading: false,
-        geocode_error: null,
+        geocodeLoaded: true,
+        geocodeLoading: false,
+        geocodeError: null,
         geocode: {
           latitude: action.data[0].geometry.coordinates[1],
           longitude: action.data[0].geometry.coordinates[0]
@@ -78,17 +80,17 @@ export default location = (state = initialState, action) => {
           id: "destination"
         }],
         queries: action.data,
-      });
+      };
 
     case ActionTypes.FETCH_GEOCODE_FAIL:
-      return Object.assign({}, state, {
+      return {
         ...state,
-        geocode_loading: false,
-        geocode_error: action.error,
-      });
+        geocodeLoading: false,
+        geocodeError: action.error,
+      };
 
     case ActionTypes.SET_GEOCODE:
-      return Object.assign({}, state, {
+      return {
         ...state,
         geocode: {
           latitude: action.geocode[1],
@@ -99,7 +101,7 @@ export default location = (state = initialState, action) => {
           type: 'point',
           id: "destination"
         }]
-      });
+      };
 
     default:
       return state

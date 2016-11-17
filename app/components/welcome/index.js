@@ -2,24 +2,21 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import { updateLocation, updateTime, submitForm, togglePicker } from '../../redux/form/action-creators';
+import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
+import {colors} from '../colors'
 import {Text, 
   View, 
   ScrollView, 
   TouchableOpacity, 
-  TouchableWithoutOpacity, 
   StyleSheet, 
   InteractionManager, 
   PixelRatio, 
   TimePickerAndroid, 
-  TouchableWithoutFeedback, 
   Platform, 
   TextInput, 
   DatePickerIOS} from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import { updateLocation, updateTime, submitForm, togglePicker } from '../../redux/form/action-creators';
-import { fetchGeocode, 
-  fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
-import {colors} from '../colors'
 var PushNotification = require('react-native-push-notification');
 
 import { Form,
@@ -46,10 +43,10 @@ class Welcome extends Component {
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
       );
       this.watchID = navigator.geolocation.watchPosition((position) => {
-        let current_location = this.polylineFormat(position.coords);
-        this.props.updateCurrentLocation(current_location);
+        let currentLocation = this.polylineFormat(position.coords);
+        this.props.updateCurrentLocation(currentLocation);
         if (this.props.geocode.latitude === "") {return}
-        let route = [this.polylineFormat(this.props.geocode), current_location]
+        let route = [this.polylineFormat(this.props.geocode), currentLocation]
         this.props.fetchDistance(route);
         this.setPushNotificationSchedule();
       });
@@ -89,7 +86,7 @@ class Welcome extends Component {
 
   setPushNotificationSchedule() {
     if (!this.props.time || !this.props.distance) {return}
-    let time = new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000;
+    let time = new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000; //TODO: explain this
     PushNotification.cancelAllLocalNotifications() //clear
     if (new Date(time) > new Date())
       PushNotification.localNotificationSchedule({
@@ -101,11 +98,11 @@ class Welcome extends Component {
   handleSubmit(){
     InteractionManager.runAfterInteractions(() => {
       
-      let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.current_location)]
+      let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.currentLocation)]
       
       if (this.props.geocode.latitude === '' || this.props.location === "Current Location") {
-        this.props.setGeocode(this.polylineFormat(this.props.current_location));
-        route[0] = this.polylineFormat(this.props.current_location);
+        this.props.setGeocode(this.polylineFormat(this.props.currentLocation));
+        route[0] = this.polylineFormat(this.props.currentLocation);
       }
 
       this.props.fetchDistance(route); 
@@ -294,7 +291,7 @@ const mapStateToProps = state => ({
   time: state.form.time,
   geocode: state.location.geocode,
   distance: state.location.distance,
-  current_location: state.location.current_location,
+  currentLocation: state.location.currentLocation,
   showPickerIOS: state.form.togglePicker
 })
 

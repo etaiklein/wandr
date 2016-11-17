@@ -1,10 +1,10 @@
 import {createAsyncFetch, createAsyncPost} from '../async/async-action';
 import * as ActionTypes from './action-types';
 
-export const updateCurrentLocation = (current_location) => {
+export const updateCurrentLocation = (currentLocation) => {
   return {
     type: ActionTypes.UPDATE_CURRENT_LOCATION,
-    current_location: current_location
+    currentLocation: currentLocation
   }
 }
 

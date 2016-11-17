@@ -10,24 +10,28 @@ const initialState = {
 export default form = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_LOCATION:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         location: action.location,
         submittedData: action.submittedData
-      })
+      }
     case UPDATE_TIME:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         time: action.time,
         timeString: action.timeString || "",
         submittedData: action.submittedData
-      })
+      }
     case SUBMIT_FORM:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         submittedData: action.submittedData
-      })
+      }
     case TOGGLE_PICKER:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         togglePicker: !state.togglePicker
-      })
+      }
     default:
       return state
   }

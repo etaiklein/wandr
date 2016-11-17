@@ -1,29 +1,27 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import {View, Text, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 import {colors} from '../colors'
 
-Mapbox.setAccessToken('pk.eyJ1IjoiaXRzZXRhaSIsImEiOiJjaXNneGxxNHQwMDE4MnRwaXBxbnFvbzFwIn0.vWdz0wM8qWICZblz22hWGw');
-
 class Journey extends Component {
-  constructor(props) {
-    super(props);
+  
+  componentWillMount() {
+    Mapbox.setAccessToken('pk.eyJ1IjoiaXRzZXRhaSIsImEiOiJjaXNneGxxNHQwMDE4MnRwaXBxbnFvbzFwIn0.vWdz0wM8qWICZblz22hWGw');
   }
 
   travelTime() {
     return Math.ceil(this.props.distance / 60);
-    
   }
 
   travelTimeString() {
     return `${this.travelTime()} min`
   }
 
+  //TODO: move to timeutils
   leaveTime() {
     return new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000
   }
@@ -47,8 +45,8 @@ class Journey extends Component {
     InteractionManager.runAfterInteractions(() => {
       if (!this._map || !this.props || !this.props.geocode.latitude) {return}
       this._map.setVisibleCoordinateBounds(
-        this.props.current_location.latitude, 
-        this.props.current_location.longitude, 
+        this.props.currentLocation.latitude, 
+        this.props.currentLocation.longitude, 
         this.props.geocode.latitude, 
         this.props.geocode.longitude, 
         150, //paddingTop
@@ -164,7 +162,7 @@ const mapStateToProps = state => ({
   location: state.form.location,
   geocode: state.location.geocode,
   distance: state.location.distance,
-  current_location: state.location.current_location,
+  currentLocation: state.location.currentLocation,
   annotations: state.location.annotations,
 })
 
