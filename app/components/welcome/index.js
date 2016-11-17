@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { updateLocation, updateTime, submitForm, togglePicker } from '../../redux/form/action-creators';
 import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
-import {colors} from '../colors'
+import {colors} from '../../lib/colors';
+import {travelTimePlusFive, toTimeString} from '../../lib/time';
 import {Text, 
   View, 
   ScrollView, 
@@ -86,7 +87,7 @@ class Welcome extends Component {
 
   setPushNotificationSchedule() {
     if (!this.props.time || !this.props.distance) {return}
-    let time = new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000; //TODO: explain this
+    let time = travelTimePlusFive(this.props.time, this.props.distance);
     PushNotification.cancelAllLocalNotifications() //clear
     if (new Date(time) > new Date())
       PushNotification.localNotificationSchedule({
@@ -110,15 +111,6 @@ class Welcome extends Component {
       Actions.journey();
     });
 
-  }
-
-  timeString(date) {
-    let time = new Date(date);
-    return this.formatTime(time.getHours(), time.getMinutes());
-  }
-
-  formatTime(hour, minute) {
-    return hour + ':' + (minute < 10 ? '0' + minute : minute);
   }
 
   async showPicker(options){
@@ -175,7 +167,7 @@ class Welcome extends Component {
           {(Platform.OS === 'ios') && 
             <View>
               <TouchableOpacity onPress={() => this.props.togglePicker()}>
-                <Text style={styles.text}>{this.timeString(this.props.time)}</Text>
+                <Text style={styles.text}>{toTimeString(this.props.time)}</Text>
               </TouchableOpacity>
               {this.props.showPickerIOS &&
                 <DatePickerIOS

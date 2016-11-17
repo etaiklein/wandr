@@ -5,40 +5,20 @@ import { connect } from 'react-redux';
 import {View, Text, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
-import {colors} from '../colors'
+import {colors} from '../../lib/colors';
+import {
+  travelTime,
+  travelTimeString,
+  leaveTime,
+  leaveTimeString,
+  arriveBefore,
+  isLate,  
+} from '../../lib/time';
 
 class Journey extends Component {
   
   componentWillMount() {
     Mapbox.setAccessToken('pk.eyJ1IjoiaXRzZXRhaSIsImEiOiJjaXNneGxxNHQwMDE4MnRwaXBxbnFvbzFwIn0.vWdz0wM8qWICZblz22hWGw');
-  }
-
-  travelTime() {
-    return Math.ceil(this.props.distance / 60);
-  }
-
-  travelTimeString() {
-    return `${this.travelTime()} min`
-  }
-
-  //TODO: move to timeutils
-  leaveTime() {
-    return new Date(this.props.time).getTime() - this.props.distance * 1000 - 60 * 5 * 1000
-  }
-
-  leaveTimeString() {
-    if (!this.props.time) {return ''}
-    let time = this.leaveTime();
-    return `${new Date(time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
-  }
-
-  arriveBefore() {
-    if (!this.props.time) {return ''}
-    return `${new Date(this.props.time).toLocaleTimeString().replace(/(.*)\D\d+/, '$1')}`
-  }
-
-  isLate() {
-    return this.leaveTime() < new Date();
   }
 
   updateMap() {
@@ -59,7 +39,7 @@ class Journey extends Component {
   }
 
   render() {
-    const { state, actions } = this.props;
+    const { state, actions, time, distance } = this.props;
     return (
       <View style={styles.container}>
         <MapView
@@ -83,18 +63,18 @@ class Journey extends Component {
           annotationsAreImmutable
         />
         <View style={styles.innerContainer}>
-          <Text style={[styles.leave_at, this.isLate() ? styles.late : {}]}>
+          <Text style={[styles.leave_at, isLate(time, distance) ? styles.late : {}]}>
             leave at:
           </Text>
-          <Text style={[styles.leave_at_time, this.isLate() ? styles.late : {}]}> 
-            {this.leaveTimeString()}
+          <Text style={[styles.leave_at_time, isLate(time, distance) ? styles.late : {}]}> 
+            {leaveTimeString(time, distance)}
           </Text>
           <View style={styles.time_table}>
             <Text style={styles.more_info}> 
               travel time: 
             </Text>
             <Text style={styles.more_info_time}> 
-              {this.travelTimeString()}
+              {travelTimeString(time, distance)}
             </Text>
           </View>
           <View style={styles.time_table}>
@@ -102,7 +82,7 @@ class Journey extends Component {
               arrive before:
             </Text>
             <Text style={styles.more_info_time}> 
-              {this.arriveBefore()}
+              {arriveBefore(time, distance)}
             </Text>
           </View>
         </View>
