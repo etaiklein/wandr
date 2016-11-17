@@ -31,5 +31,5 @@ export const arriveBefore = (time, distance) => {
 }
 
 export const isLate = (time, distance) => {
-  return leaveTime(time) < new Date();
+  return leaveTime(time, distance) < new Date().getTime();
 }
