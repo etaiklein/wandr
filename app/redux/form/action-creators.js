@@ -1,4 +1,4 @@
-import { UPDATE_LOCATION, UPDATE_TIME, SUBMIT_FORM, TOGGLE_PICKER } from './action-types'
+import { UPDATE_LOCATION, UPDATE_TIME, SUBMIT_FORM, TOGGLE_PICKER, SHOW_LOCATION_RESULTS } from './action-types'
 
 export const updateTime = (time, timeString) => {
   return {
@@ -9,10 +9,16 @@ export const updateTime = (time, timeString) => {
   }
 }
 
-
 export const togglePicker = () => {
   return {
     type: TOGGLE_PICKER,
+  }
+}
+
+export const shouldShowQueryResults = (locationResultsVisible) => {
+  return {
+    type: SHOW_LOCATION_RESULTS,
+    locationResultsVisible: locationResultsVisible,
   }
 }
 

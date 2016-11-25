@@ -1,10 +1,11 @@
-import { UPDATE_TIME, UPDATE_LOCATION, SUBMIT_FORM, TOGGLE_PICKER } from './action-types'
+import { UPDATE_TIME, UPDATE_LOCATION, SUBMIT_FORM, TOGGLE_PICKER, SHOW_LOCATION_RESULTS } from './action-types'
 
 const initialState = {
   location: "Current Location",
   time: new Date(Date.now() + 30*60000).toString(),
   submittedData: false,
   togglePicker: false,
+  locationResultsVisible: false
 }
 
 export default form = (state = initialState, action) => {
@@ -31,6 +32,11 @@ export default form = (state = initialState, action) => {
       return {
         ...state,
         togglePicker: !state.togglePicker
+      }
+    case SHOW_LOCATION_RESULTS:
+      return {
+        ...state,
+        locationResultsVisible: action.locationResultsVisible
       }
     default:
       return state

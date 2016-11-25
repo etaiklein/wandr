@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { updateLocation, updateTime, submitForm, togglePicker } from '../../redux/form/action-creators';
+import { updateLocation, updateTime, submitForm, togglePicker, shouldShowQueryResults } from '../../redux/form/action-creators';
 import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
 import {colors} from '../../lib/colors';
 import {travelTimePlusFive, toTimeString} from '../../lib/time';
@@ -73,12 +73,14 @@ class Welcome extends Component {
     InteractionManager.runAfterInteractions(() => {
       this.props.updateLocation(event);
       this.props.fetchGeocode(event);
+      this.props.shouldShowQueryResults(true);
     });
   }
 
   handleLocationSubmit(event){
     InteractionManager.runAfterInteractions(() => {
       this.props.fetchGeocode(this.props.location);
+      this.props.updateLocation(event);
     });
   }
 
@@ -151,19 +153,43 @@ class Welcome extends Component {
       </View>;
   }
 
+  querySelected(query) {
+    this.props.updateLocation(query.place_name);
+    this.props.shouldShowQueryResults(false);
+    this.props.setGeocode(query.geometry.coordinates);
+  }
+
+  currentLocationSelected() {
+    this.props.shouldShowQueryResults(false);
+    this.props.updateLocation('Current Location');
+  }
+  
   renderQueries() {
     let queries = [];
     if (!this.props.queries){return}
+    queries.push(
+      <TouchableOpacity key={'Current Location'} onPress={() => this.currentLocationSelected()}>
+        <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.location == "Current Location") ? styles.selectedQuery : styles.listText]}>
+          <Icon
+            name='map-pin'
+            size={20}
+            color={colors.CTA}
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          Current Location
+        </Text>
+      </TouchableOpacity>
+    )
     for (let query of this.props.queries){
       queries.push(
-        <TouchableOpacity key={query.place_name} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
-          <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
+        <TouchableOpacity key={query.place_name} onPress={() => this.querySelected(query)}>
+          <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.location != "Current Location" && this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
             {query.place_name}
           </Text>
         </TouchableOpacity>
       )
     }
-    return <View style={queries.length > 1 && styles.queryList}>{queries}</View>
+    return <View style={styles.queryList}>{queries}</View>
   }
 
   render() {
@@ -185,10 +211,11 @@ class Welcome extends Component {
               onSubmitEditing={this.handleLocationSubmit.bind(this)}
               value={this.props.location}
               defaultValue={"Current Location"}
+              onFocus={() => this.props.shouldShowQueryResults(true)}
             />
           </View>
           <View style={styles.queryContainer}>
-          {this.renderQueries()}
+          {this.props.showLocationResults && this.renderQueries()}
           </View>
           <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
@@ -206,7 +233,7 @@ class Welcome extends Component {
           }
           {(Platform.OS === 'android') && 
           <View>
-            {this.renderTimeWithIcon(this.showPicker.bind(this, {}))}
+            {this.renderTimeWithIcon(() => this.showPicker.bind(this, {}))}
           </View>
           }
         </ScrollView>
@@ -238,7 +265,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexDirection: 'row',
-    flex: 1,
+    flex: 0.9,
     marginTop: 20,
     backgroundColor: colors.transparent,
   },
@@ -261,8 +288,9 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 8 * PixelRatio.getFontScale(),
+    fontSize: 10 * PixelRatio.getFontScale(),
     color: colors.primary,
+    height: 30,
   },
   selectedQuery: {
     color: colors.CTA
@@ -289,7 +317,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     flex: 0.1,
-    bottom: 50,
   },
   button: {
     paddingHorizontal: 14,
@@ -313,7 +340,8 @@ const mapStateToProps = state => ({
   geocode: state.location.geocode,
   distance: state.location.distance,
   currentLocation: state.location.currentLocation,
-  showPickerIOS: state.form.togglePicker
+  showPickerIOS: state.form.togglePicker,
+  showLocationResults: state.form.locationResultsVisible
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -337,6 +365,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setGeocode: (location) => {
     dispatch(setGeocode(location))
+  },
+  shouldShowQueryResults: (bool) => {
+    dispatch(shouldShowQueryResults(bool))
   },
 })
 
