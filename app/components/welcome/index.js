@@ -8,6 +8,8 @@ import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '
 import {colors} from '../../lib/colors';
 import {travelTimePlusFive, toTimeString} from '../../lib/time';
 import Button from 'apsl-react-native-button';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
 import {Text, 
   View, 
   ScrollView, 
@@ -132,6 +134,23 @@ class Welcome extends Component {
     }
   };
 
+  renderTimeWithIcon(onpress) {
+    return <View>
+        <TouchableOpacity onPress={onpress}>
+          <Fumi
+            label={'arrive by'}
+            iconClass={Icon}
+            iconName={'bell'}
+            iconColor={colors.primary}
+            // TextInput props
+            editable={false}
+            value={toTimeString(this.props.time)}
+            _focus={() => Function.prototype}
+          />
+        </TouchableOpacity>
+      </View>;
+  }
+
   renderQueries() {
     let queries = [];
     if (!this.props.queries){return}
@@ -151,11 +170,14 @@ class Welcome extends Component {
     return (
       <Image source={require('../../../images/followme.jpg')} style={styles.outerContainer}>
         <ScrollView automaticallyAdjustContentInsets={false} style={styles.innerContainer}>
-          <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
-          <View style={styles.separator}/>
-          <View style={styles.textInput}>
-            <TextInput
-              style={[styles.text, styles.textInputText]}
+          <View >
+            <Fumi
+              label={'walk to'}
+              iconClass={Icon}
+              iconName={'search'}
+              iconColor={colors.primary}
+              // TextInput props
+              autoCapitalize={'none'}
               autoCorrect={true}
               selectTextOnFocus={true}
               numberOfLines={1}
@@ -171,9 +193,7 @@ class Welcome extends Component {
           <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
             <View>
-              <TouchableOpacity onPress={() => this.props.togglePicker()}>
-                <Text style={styles.text}>{toTimeString(this.props.time)}</Text>
-              </TouchableOpacity>
+              {this.renderTimeWithIcon(() => this.props.togglePicker())}
               {this.props.showPickerIOS &&
                 <DatePickerIOS
                   date={new Date(this.props.time)}
@@ -186,10 +206,7 @@ class Welcome extends Component {
           }
           {(Platform.OS === 'android') && 
           <View>
-            <TouchableOpacity
-              onPress={this.showPicker.bind(this, {})}>
-              <Text style={styles.text}>{toTimeString(this.props.time)}</Text>
-            </TouchableOpacity>
+            {this.renderTimeWithIcon(this.showPicker.bind(this, {}))}
           </View>
           }
         </ScrollView>
@@ -232,6 +249,11 @@ const styles = StyleSheet.create({
     color: colors.primary,
     backgroundColor: colors.transparent,
     textAlign: 'center'
+  },
+  textInput: {
+    borderColor: 'grey', 
+    backgroundColor: 'white',
+    borderWidth: 1,
   },
   textInputText: {
     height: 45,
