@@ -1,6 +1,8 @@
 package com.wandr2;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.smixx.reactnativeicons.ReactNativeIcons;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 
 public class MainActivity extends ReactActivity {

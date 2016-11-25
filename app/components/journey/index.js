@@ -2,10 +2,11 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {View, Text, StyleSheet, InteractionManager, PixelRatio} from 'react-native';
+import {View, Text, StyleSheet, InteractionManager, PixelRatio, TouchableOpacity} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 import {colors} from '../../lib/colors';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   travelTime,
   travelTimeString,
@@ -62,6 +63,13 @@ class Journey extends Component {
           styleURL={Mapbox.mapStyles.bright}
           annotationsAreImmutable
         />
+        <TouchableOpacity onPress={() => {Actions.welcome()}} style={styles.icon_container}>
+          <Icon
+            name='chevron-left'
+            size={20}
+            color={colors.CTA}
+          />
+        </TouchableOpacity>
         <View style={styles.innerContainer}>
           <Text style={[styles.leave_at, isLate(time, distance) ? styles.late : {}]}>
             leave at:
@@ -93,6 +101,12 @@ class Journey extends Component {
 
 const styles = StyleSheet.create({
   //TEXT
+  icon_container: {
+    position: 'absolute',
+    left: 15,
+    top: 30,
+    backgroundColor: colors.transparent,
+  },
   leave_at: {
     color: colors.primary,
     fontSize: 12 * PixelRatio.getFontScale(),
