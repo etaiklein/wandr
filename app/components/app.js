@@ -37,10 +37,8 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <RouterWithRedux>
-          <Scene key="root">
-            <Scene key="welcome" component={Welcome} title="Welcome" initial={true} />
-            <Scene key="journey" component={Journey} title="Journey" />
-          </Scene>
+          <Scene key="welcome" component={Welcome} title="Welcome" initial={true} hideNavBar/>
+          <Scene key="journey" component={Journey} title="Journey" hideNavBar/>
         </RouterWithRedux>
       </Provider>
     );

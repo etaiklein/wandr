@@ -17,6 +17,7 @@ import {Text,
   TimePickerAndroid, 
   Platform, 
   TextInput, 
+  Image,
   DatePickerIOS} from 'react-native';
 var PushNotification = require('react-native-push-notification');
 
@@ -146,7 +147,7 @@ class Welcome extends Component {
 
   render() {
     return (
-      <View style={styles.outerContainer}>
+      <Image source={require('../../../images/followme.jpg')} style={styles.outerContainer}>
         <ScrollView style={styles.innerContainer}>
           <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
           <View style={styles.separator}/>
@@ -193,7 +194,7 @@ class Welcome extends Component {
             <Text style={styles.buttonText}>Wander!</Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </Image>
     );
   }
 }
@@ -207,19 +208,23 @@ const styles = StyleSheet.create({
   outerContainer: {
     paddingTop: 80,
     flex: 1,
-    backgroundColor: colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: null,
+    height: null,
+    backgroundColor: colors.transparent,
   },
   innerContainer: {
     marginTop: 20,
     marginBottom: 100,
-    backgroundColor: colors.background,
+    backgroundColor: colors.transparent,
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
     fontSize: 12 * PixelRatio.getFontScale(),
     paddingVertical: 10,
     color: colors.primary,
-    backgroundColor: colors.background,
+    backgroundColor: colors.transparent,
     textAlign: 'center'
   },
   height: {
@@ -266,7 +271,7 @@ const styles = StyleSheet.create({
     borderRadius:4, 
     borderWidth: 2,
     borderColor: colors.CTA,
-    backgroundColor: colors.background
+    backgroundColor: colors.transparent
   },
   buttonText: {
     color: colors.CTA,

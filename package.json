@@ -11,6 +11,7 @@
     "react": "15.3.2",
     "react-native": "0.35.0",
     "react-native-form-generator": "^0.9.9",
+    "react-native-icons": "^0.7.1",
     "react-native-mapbox-gl": "^5.0.0",
     "react-native-push-notification": "^2.2.0",
     "react-native-router-flux": "^3.36.0",

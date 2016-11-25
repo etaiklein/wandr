@@ -1,6 +1,9 @@
+import StyleSheet from 'react-native';
+
 export const colors = {
   primary: '#8b5742',
   background: '#edead9',
+  transparent: 'rgba(0,0,0,0)',
   white: 'white',
   CTA: '#0a69ff',
   error: '#ff2136',
