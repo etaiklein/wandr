@@ -7,6 +7,7 @@ import { updateLocation, updateTime, submitForm, togglePicker } from '../../redu
 import { fetchGeocode, fetchDistance, updateCurrentLocation, setGeocode } from '../../redux/location/action-creators';
 import {colors} from '../../lib/colors';
 import {travelTimePlusFive, toTimeString} from '../../lib/time';
+import Button from 'apsl-react-native-button';
 import {Text, 
   View, 
   ScrollView, 
@@ -18,6 +19,7 @@ import {Text,
   Platform, 
   TextInput, 
   Image,
+  Dimensions,
   DatePickerIOS} from 'react-native';
 var PushNotification = require('react-native-push-notification');
 
@@ -135,7 +137,7 @@ class Welcome extends Component {
     if (!this.props.queries){return}
     for (let query of this.props.queries){
       queries.push(
-        <TouchableOpacity key={query.place_name} style={styles.queryContainer} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
+        <TouchableOpacity key={query.place_name} onPress={() => this.props.setGeocode(query.geometry.coordinates)}>
           <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
             {query.place_name}
           </Text>
@@ -148,12 +150,12 @@ class Welcome extends Component {
   render() {
     return (
       <Image source={require('../../../images/followme.jpg')} style={styles.outerContainer}>
-        <ScrollView style={styles.innerContainer}>
+        <ScrollView automaticallyAdjustContentInsets={false} style={styles.innerContainer}>
           <Text style={[styles.text, styles.title]}>i want to arrive at</Text>
           <View style={styles.separator}/>
           <View style={styles.textInput}>
             <TextInput
-              style={[styles.text, styles.height]}
+              style={[styles.text, styles.textInputText]}
               autoCorrect={true}
               selectTextOnFocus={true}
               numberOfLines={1}
@@ -163,7 +165,9 @@ class Welcome extends Component {
               defaultValue={"Current Location"}
             />
           </View>
+          <View style={styles.queryContainer}>
           {this.renderQueries()}
+          </View>
           <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
             <View>
@@ -189,11 +193,11 @@ class Welcome extends Component {
           </View>
           }
         </ScrollView>
-        <TouchableOpacity style={styles.buttonContainer} onPress={this.handleSubmit.bind(this)}>
-          <View style={styles.button}>
+        <View style={styles.buttonContainer} >
+          <Button style={styles.button} onPress={this.handleSubmit.bind(this)}>
             <Text style={styles.buttonText}>Wander!</Text>
-          </View>
-        </TouchableOpacity>
+          </Button>
+        </View>
       </Image>
     );
   }
@@ -206,8 +210,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   outerContainer: {
-    paddingTop: 80,
+    marginTop: 20,
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     width: null,
@@ -215,8 +220,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.transparent,
   },
   innerContainer: {
+    flexDirection: 'row',
+    flex: 1,
     marginTop: 20,
-    marginBottom: 100,
     backgroundColor: colors.transparent,
   },
   text: {
@@ -227,8 +233,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.transparent,
     textAlign: 'center'
   },
-  height: {
+  textInputText: {
     height: 45,
+    width: Dimensions.get('window').width - 20,
   },
   listText: {
     fontFamily: 'HelveticaNeue-Medium',
@@ -239,8 +246,11 @@ const styles = StyleSheet.create({
     color: colors.CTA
   },
   queryContainer: {
+    width: Dimensions.get('window').width - 10,
   },
   queryList: {
+    alignSelf: 'center',
+    justifyContent: 'center',
     marginHorizontal: 10,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -249,26 +259,18 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderColor: colors.primary,
   },
-  textInput: {
-    paddingHorizontal: 20,
-  },
   separator: {
     marginTop: 30
   },
   buttonContainer: {
-    position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    flex: 1,
+    flex: 0.1,
     bottom: 50,
   },
   button: {
-    flex: 1,
-    marginHorizontal: 100,
-    paddingTop: 10,
-    height:45, 
-    borderRadius:4, 
+    paddingHorizontal: 14,
     borderWidth: 2,
     borderColor: colors.CTA,
     backgroundColor: colors.transparent
