@@ -168,7 +168,7 @@ class Welcome extends Component {
     let queries = [];
     if (!this.props.queries){return}
     queries.push(
-      <TouchableOpacity key={'Current Location'} onPress={() => this.currentLocationSelected()}>
+      <TouchableOpacity key={'Current Location'} onPress={() => this.currentLocationSelected()} style={[styles.listItem, (this.props.location == "Current Location") ? styles.selectedListItem : styles.listItem]}>
         <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.location == "Current Location") ? styles.selectedQuery : styles.listText]}>
           <Icon
             name='map-pin'
@@ -182,7 +182,7 @@ class Welcome extends Component {
     )
     for (let query of this.props.queries){
       queries.push(
-        <TouchableOpacity key={query.place_name} onPress={() => this.querySelected(query)}>
+        <TouchableOpacity key={query.place_name} style={[styles.listItem, (this.props.location != "Current Location" && this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedListItem : styles.listItem]} onPress={() => this.querySelected(query)}>
           <Text ellipsizeMode="tail" numberOfLines={1} style={[styles.listText, (this.props.location != "Current Location" && this.props.geocode.latitude == query.geometry.coordinates[0]) ? styles.selectedQuery : styles.listText]}>
             {query.place_name}
           </Text>
@@ -275,7 +275,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     color: colors.primary,
     backgroundColor: colors.transparent,
-    textAlign: 'center'
+    textAlign: 'left'
+  },
+  listItem: {
+    borderBottomWidth: 1,
+    borderColor: colors.primary,
+  },
+  selectedListItem: {
+    borderColor: colors.CTA,
   },
   textInput: {
     borderColor: 'grey', 
@@ -297,17 +304,12 @@ const styles = StyleSheet.create({
   },
   queryContainer: {
     width: Dimensions.get('window').width - 10,
+    backgroundColor: colors.white,
   },
   queryList: {
-    alignSelf: 'center',
-    justifyContent: 'center',
     marginHorizontal: 10,
     paddingHorizontal: 10,
     paddingBottom: 10,
-    borderLeftWidth: 1,
-    borderBottomWidth: 1,
-    borderRightWidth: 1,
-    borderColor: colors.primary,
   },
   separator: {
     marginTop: 30
