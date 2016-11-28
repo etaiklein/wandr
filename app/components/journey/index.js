@@ -147,7 +147,10 @@ const styles = StyleSheet.create({
   innerContainer: {
     padding: 20,
     justifyContent: 'flex-end',
-    backgroundColor: colors.background
+    backgroundColor: colors.background,
+    shadowRadius: 1,
+    shadowOpacity: .05,
+    elevation: 1,
   },
 })
 
