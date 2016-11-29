@@ -136,21 +136,17 @@ class Welcome extends Component {
     }
   };
 
-  renderTimeWithIcon(onpress) {
-    return <View>
-        <TouchableOpacity onPress={onpress}>
-          <Fumi
-            label={'arrive by'}
-            iconClass={Icon}
-            iconName={'bell'}
-            iconColor={colors.primary}
-            // TextInput props
-            editable={false}
-            value={toTimeString(this.props.time)}
-            _focus={() => Function.prototype}
-          />
-        </TouchableOpacity>
-      </View>;
+  renderTimeWithIcon() {
+    return <Fumi
+      label={'arrive by'}
+      iconClass={Icon}
+      iconName={'bell'}
+      iconColor={colors.primary}
+      // TextInput props
+      editable={false}
+      value={toTimeString(this.props.time)}
+      _focus={() => Function.prototype}
+    />;
   }
 
   querySelected(query) {
@@ -220,7 +216,9 @@ class Welcome extends Component {
           <View style={styles.separator}/>
           {(Platform.OS === 'ios') && 
             <View>
-              {this.renderTimeWithIcon(() => this.props.togglePicker())}
+              <TouchableOpacity onPress={() => this.props.togglePicker()}>
+                {this.renderTimeWithIcon()}
+              </TouchableOpacity>
               {this.props.showPickerIOS &&
                 <DatePickerIOS
                   date={new Date(this.props.time)}
@@ -233,7 +231,9 @@ class Welcome extends Component {
           }
           {(Platform.OS === 'android') && 
           <View>
-            {this.renderTimeWithIcon(() => this.showPicker.bind(this, {}))}
+            <TouchableOpacity onPress={this.showPicker.bind(this, {})}>
+              {this.renderTimeWithIcon()}
+            </TouchableOpacity>
           </View>
           }
         </ScrollView>
