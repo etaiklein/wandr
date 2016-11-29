@@ -27,7 +27,8 @@ platform :ios do
       project: './ios/wandr2.xcodeproj'
     ) # Build your app - more options available
     pem(generate_p12: true)
-    #pilot
+    pilot
+    deliver
 
     #commit_version_bump(
     #  message: "Deployed new build #{lane_context[SharedValues::BUILD_NUMBER]}",
