@@ -109,22 +109,22 @@ const styles = StyleSheet.create({
   },
   leave_at: {
     color: colors.primary,
-    fontSize: 12 * PixelRatio.getFontScale(),
+    fontSize: 24,
   },
   leave_at_time: {
     color: colors.primary,
-    fontSize: 35 * PixelRatio.getFontScale(),
+    fontSize: 70,
     textAlign: 'center',
   },
   more_info: {
     color: colors.primary,
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 20,
     justifyContent: 'flex-start',
     flex: 0.5,
   },
   more_info_time: {
     color: colors.primary,
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'right',
     justifyContent: 'flex-end',

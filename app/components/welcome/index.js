@@ -250,7 +250,7 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 12 * PixelRatio.getFontScale(),
+    fontSize: 12,
     textAlign: 'center'
   },
   outerContainer: {
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 12 * PixelRatio.getFontScale(),
+    fontSize: 24,
     paddingVertical: 10,
     color: colors.primary,
     backgroundColor: colors.transparent,
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 20,
     color: colors.primary,
     height: 30,
   },
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.CTA,
     fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 10 * PixelRatio.getFontScale(),
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   }

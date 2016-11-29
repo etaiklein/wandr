@@ -5,13 +5,13 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* wandr2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* wandr2Tests.m */; };
 		0948E5AC18424946A0F61B2C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9379A56A1A3A46399E10B0DA /* FontAwesome.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -20,7 +20,6 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		155D0884FE4A486FB21A86D0 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAE6CC48D3844AC7806FB11F /* Entypo.ttf */; };
 		25EBBADE2732473499F0D00C /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE76654238C4955B5C70580 /* Foundation.ttf */; };
@@ -31,6 +30,8 @@
 		980CD0EB1DCA9DD400AB451F /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0EA1DCA9DD400AB451F /* Mapbox.framework */; };
 		980CD0EC1DCA9DD400AB451F /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0EA1DCA9DD400AB451F /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		980CD0EF1DCA9E1900AB451F /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 980CD0D91DCA9D5400AB451F /* libRCTMapboxGL.a */; };
+		98233F1D1DECC48300559DCC /* wandr2Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98233F1C1DECC48300559DCC /* wandr2Snapshot.swift */; };
+		98233F251DECC4CB00559DCC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98233F241DECC4CB00559DCC /* SnapshotHelper.swift */; };
 		98B340E01DCAEBAB0013C8C0 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B340DA1DCAEB970013C8C0 /* libRCTPushNotification.a */; };
 		C54F394FA70D4B6FB570B3CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D38C05648ECE407A866050E5 /* MaterialIcons.ttf */; };
 		C6E3661D0CBC49D7B1B00D37 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8732DDAA5F5A4307864D47FA /* SimpleLineIcons.ttf */; };
@@ -74,13 +75,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
-		};
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = wandr2;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -131,6 +125,13 @@
 			remoteGlobalIDString = C5DBB34B1AF2EF2B00E611A9;
 			remoteInfo = RCTMapboxGLTests;
 		};
+		98233F1F1DECC48300559DCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = wandr2;
+		};
 		98B340D91DCAEB970013C8C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */;
@@ -175,7 +176,6 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* wandr2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wandr2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* wandr2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wandr2Tests.m; sourceTree = "<group>"; };
 		0B7D78C5CA1842D09EC4D701 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -201,6 +201,11 @@
 		9379A56A1A3A46399E10B0DA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		980CD0CF1DCA9D5400AB451F /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		980CD0EA1DCA9DD400AB451F /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		98233F131DECC3D600559DCC /* wandr2Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wandr2Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		98233F1A1DECC48300559DCC /* wandr2Snapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wandr2Snapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98233F1C1DECC48300559DCC /* wandr2Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wandr2Snapshot.swift; sourceTree = "<group>"; };
+		98233F1E1DECC48300559DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98233F241DECC4CB00559DCC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		98B340CE1DCAEB970013C8C0 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		BF313AEB69A34AAEA8B2D3F4 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		CA07EA858CE94EEFA6D8EA82 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -209,14 +214,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +233,13 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				D6F0D5EF7CA84AB780319F0B /* libReactNativeIcons.a in Frameworks */,
 				90054B1BF31142F796DD887B /* libRNVectorIcons.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98233F171DECC48300559DCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 			children = (
 				00E356F21AD99517003FC87E /* wandr2Tests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
+				98233F131DECC3D600559DCC /* wandr2Tests-Bridging-Header.h */,
 			);
 			path = wandr2Tests;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				13B07FAE1A68108700A75B9A /* wandr2 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* wandr2Tests */,
+				98233F1B1DECC48300559DCC /* wandr2Snapshot */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				32163803D98341469CE4329F /* Resources */,
 			);
@@ -408,7 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* wandr2.app */,
-				00E356EE1AD99517003FC87E /* wandr2Tests.xctest */,
+				98233F1A1DECC48300559DCC /* wandr2Snapshot.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,6 +426,16 @@
 				980CD0DB1DCA9D5400AB451F /* RCTMapboxGLTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		98233F1B1DECC48300559DCC /* wandr2Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				98233F241DECC4CB00559DCC /* SnapshotHelper.swift */,
+				98233F1C1DECC48300559DCC /* wandr2Snapshot.swift */,
+				98233F1E1DECC48300559DCC /* Info.plist */,
+			);
+			path = wandr2Snapshot;
 			sourceTree = "<group>";
 		};
 		98B340CF1DCAEB970013C8C0 /* Products */ = {
@@ -449,24 +465,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* wandr2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "wandr2Tests" */;
-			buildPhases = (
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = wandr2Tests;
-			productName = wandr2Tests;
-			productReference = 00E356EE1AD99517003FC87E /* wandr2Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* wandr2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "wandr2" */;
@@ -487,23 +485,43 @@
 			productReference = 13B07F961A680F5B00A75B9A /* wandr2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		98233F191DECC48300559DCC /* wandr2Snapshot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98233F211DECC48300559DCC /* Build configuration list for PBXNativeTarget "wandr2Snapshot" */;
+			buildPhases = (
+				98233F161DECC48300559DCC /* Sources */,
+				98233F171DECC48300559DCC /* Frameworks */,
+				98233F181DECC48300559DCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98233F201DECC48300559DCC /* PBXTargetDependency */,
+			);
+			name = wandr2Snapshot;
+			productName = wandr2Snapshot;
+			productReference = 98233F1A1DECC48300559DCC /* wandr2Snapshot.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 810;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = YGZ35BXLMB;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = YGZ35BXLMB;
 						ProvisioningStyle = Automatic;
+					};
+					98233F191DECC48300559DCC = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = YGZ35BXLMB;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -579,7 +597,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* wandr2 */,
-				00E356ED1AD99517003FC87E /* wandr2Tests */,
+				98233F191DECC48300559DCC /* wandr2Snapshot */,
 			);
 		};
 /* End PBXProject section */
@@ -693,13 +711,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -715,6 +726,13 @@
 				D9261F9EC7BD43298A327F3C /* Octicons.ttf in Resources */,
 				C6E3661D0CBC49D7B1B00D37 /* SimpleLineIcons.ttf in Resources */,
 				D262866A04E14B9AA92BD40B /* Zocial.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98233F181DECC48300559DCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,14 +769,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* wandr2Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,13 +778,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98233F161DECC48300559DCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98233F1D1DECC48300559DCC /* wandr2Snapshot.swift in Sources */,
+				98233F251DECC4CB00559DCC /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+		98233F201DECC48300559DCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* wandr2 */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+			targetProxy = 98233F1F1DECC48300559DCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -791,49 +810,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = YGZ35BXLMB;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = wandr2Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wandr2.app/wandr2";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = YGZ35BXLMB;
-				INFOPLIST_FILE = wandr2Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wandr2.app/wandr2";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1000,18 +976,49 @@
 			};
 			name = Release;
 		};
+		98233F221DECC48300559DCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YGZ35BXLMB;
+				INFOPLIST_FILE = wandr2Snapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wandr2Snapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = wandr2;
+			};
+			name = Debug;
+		};
+		98233F231DECC48300559DCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YGZ35BXLMB;
+				INFOPLIST_FILE = wandr2Snapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wandr2Snapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = wandr2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "wandr2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "wandr2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1026,6 +1033,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98233F211DECC48300559DCC /* Build configuration list for PBXNativeTarget "wandr2Snapshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98233F221DECC48300559DCC /* Debug */,
+				98233F231DECC48300559DCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
