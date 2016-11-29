@@ -1,0 +1,43 @@
+{
+  "default": {
+    "keyword": {
+      "title": {
+        "color": "#545454"
+      },
+      "padding": 50,
+      "show_complete_frame": true
+    }
+  },
+  "data": [
+    {
+      "filter": "01launchApp",
+      "keyword": {
+        "color": "#d21559"
+      }
+    },
+    {
+      "filter": "02search",
+      "keyword": {
+        "color": "#feb909"
+      }
+    },
+    {
+      "filter": "03selectQuery",
+      "keyword": {
+        "color": "#aa4dbc"
+      }
+    },
+    {
+      "filter": "04queryAfterSelected",
+      "keyword": {
+        "color": "#31bb48"
+      }
+    },
+    {
+      "filter": "04queryAfterSelected",
+      "keyword": {
+        "color": "#febb48"
+      }
+    }
+  ]
+}

@@ -37,27 +37,27 @@ class wandr2Snapshot: XCTestCase {
     
     func testExample() {
       
-      
       let app = XCUIApplication()
+      snapshot("01launchApp")
       
       let searchBar = app.otherElements.children(matching: .textField)
       searchBar.element.tap()
       app.typeText("Washington sq")
       sleep(3)
-      snapshot("01search")
+      snapshot("02search")
 
       let queryResult = app.otherElements[" Washington Square Arch, Manhattan, New York, New York 10003, United States"]
       queryResult.tap()
       queryResult.tap()
-      snapshot("02selectQuery")
+      snapshot("03selectQuery")
 
       searchBar.element.tap()
-      snapshot("03queryAfterSelected")
+      snapshot("04queryAfterSelected")
       
       app.tap()
       app.otherElements[" Wander!"].tap()
       sleep(3)
-      snapshot("04journey")
+      snapshot("05journey")
 
     }
 }

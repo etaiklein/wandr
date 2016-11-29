@@ -20,13 +20,14 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    match(type: "appstore") # more information: https://codesigning.guide
+    #match(type: "appstore") # more information: https://codesigning.guide
     snapshot
-    gym(
-      scheme: "wandr2",
-      project: './ios/wandr2.xcodeproj'
-    ) # Build your app - more options available
-    pem(generate_p12: true)
+    frameit
+    #gym(
+    #  scheme: "wandr2",
+    #  project: './ios/wandr2.xcodeproj'
+    #) # Build your app - more options available
+    #pem(generate_p12: true)
     #pilot
 
     #commit_version_bump(
