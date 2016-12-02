@@ -14,6 +14,7 @@
     "react-native-form-generator": "^0.9.9",
     "react-native-icons": "^0.7.1",
     "react-native-mapbox-gl": "^5.0.0",
+    "react-native-mauron85-background-geolocation": "^0.2.0-alpha.5",
     "react-native-push-notification": "^2.2.0",
     "react-native-router-flux": "^3.36.0",
     "react-native-textinput-effects": "^0.2.0",

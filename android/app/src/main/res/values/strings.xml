@@ -1,6 +1,5 @@
 <resources>
-
-
-
+    <string name="account_type">com.wandr2.account</string>
+    <string name="content_authority">com.wandr2.authority</string>
     <string name="app_name">wandr2</string>
 </resources>

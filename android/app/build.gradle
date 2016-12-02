@@ -141,6 +141,7 @@ dependencies {
     compile project(':react-native-mapbox-gl')
     compile fileTree(dir: "libs", include: ["*.jar"])
     // From node_modules
+    compile project(':react-native-mauron85-background-geolocation')
     compile project(':react-native-push-notification')
     compile('com.google.android.gms:play-services-gcm:8.1.0') {
         force = true;

@@ -10,6 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage; // <-- import
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;  // <--- Import Package
+import com.marianhello.react.BackgroundGeolocationPackage;  // <--- Import Package
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new ReactNativeMapboxGLPackage(),  // <-- Register package here
           new ReactNativePushNotificationPackage() // <---- Add the Package
+          new BackgroundGeolocationPackage() // <---- Add the Package
       );
     }
   };
