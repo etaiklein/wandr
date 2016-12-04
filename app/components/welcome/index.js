@@ -10,6 +10,7 @@ import {travelTimePlusFive, toTimeString} from '../../lib/time';
 import Button from 'apsl-react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
+import BackgroundGeolocation from "react-native-background-geolocation";
 import {Text, 
   View, 
   ScrollView, 
@@ -32,35 +33,22 @@ import { Form,
 
 
 class Welcome extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  watchID: ?number = null;
-
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      //get current location
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
-        },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
-      this.watchID = navigator.geolocation.watchPosition((position) => {
-        let currentLocation = this.polylineFormat(position.coords);
-        this.props.updateCurrentLocation(currentLocation);
-        if (this.props.geocode.latitude === "") {return}
-        let route = [this.polylineFormat(this.props.geocode), currentLocation]
-        this.props.fetchDistance(route);
-        this.setPushNotificationSchedule();
-      });
-    });
+  componentWillMount() {
+    BackgroundGeolocation.on('location', this.onLocation);
   }
 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+    BackgroundGeolocation.on('location', this.onLocation);
+  }
+
+  onLocation(position) {
+    let currentLocation = this.polylineFormat(position.coords);
+    this.props.updateCurrentLocation(currentLocation);
+    if (!this.props.geocodeLoaded) {return}
+    let route = [this.polylineFormat(this.props.geocode), currentLocation]
+    this.props.fetchDistance(route);
+    this.setPushNotificationSchedule();
   }
 
   handleTimeChange(event){
@@ -108,7 +96,7 @@ class Welcome extends Component {
       
       let route = [this.polylineFormat(this.props.geocode), this.polylineFormat(this.props.currentLocation)]
       
-      if (this.props.geocode.latitude === '' || this.props.location === "Current Location") {
+      if (!this.props.geocodeLoaded || this.props.location === "Current Location") {
         this.props.setGeocode(this.polylineFormat(this.props.currentLocation));
         route[0] = this.polylineFormat(this.props.currentLocation);
       }
@@ -340,8 +328,10 @@ const mapStateToProps = state => ({
   queries: state.location.queries,
   time: state.form.time,
   geocode: state.location.geocode,
+  geocodeLoaded: state.location.geocodeLoaded,
   distance: state.location.distance,
   currentLocation: state.location.currentLocation,
+  currentLocationSet: state.location.currentLocationSet,
   showPickerIOS: state.form.togglePicker,
   showLocationResults: state.form.locationResultsVisible
 })

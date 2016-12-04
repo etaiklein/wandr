@@ -4,7 +4,8 @@ import * as ActionTypes from './action-types';
 export const updateCurrentLocation = (currentLocation) => {
   return {
     type: ActionTypes.UPDATE_CURRENT_LOCATION,
-    currentLocation: currentLocation
+    currentLocation: currentLocation,
+    currentLocationSet: true,
   }
 }
 

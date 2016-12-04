@@ -12,14 +12,15 @@ const initialState = {
   geocodeLoading: false,
   geocodeError: "",
   geocode: {
-    latitude: '',
-    longitude: ''
+    latitude: 40.729318,
+    longitude: -73.994183
   },
   currentLocation: {
-    latitude: '',
-    longitude: ''
+    latitude: 40.729318,
+    longitude: -73.994183
   },
   annotations: [],
+  currentLocationSet: false,
 }
 
 export default location = (state = initialState, action) => {
@@ -29,9 +30,10 @@ export default location = (state = initialState, action) => {
       return {
         ...state,
         currentLocation: {
-          latitude: action.currentLocation[1],
-          longitude: action.currentLocation[0]
-        }
+          latitude: action.latitude,
+          longitude: action.longitude
+        },
+        currentLocationSet: true
       };
 
     case ActionTypes.FETCH_DISTANCE:
