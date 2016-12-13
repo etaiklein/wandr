@@ -1,10 +1,13 @@
 # Wandr2
+<a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1176377826&mt=8" rel="iPhone App">
+<img src="https://cdn.rawgit.com/etaiklein/wandr/master/images/download-app-store.svg" alt="iPhone App" width="225"/>
+</a>
+<a href="https://play.google.com/store/apps/details?id=com.wandr2&hl=en" rel="Android App">
+<img src="https://github.com/etaiklein/wandr/blob/master/images/download-google-play.png" alt="Android App" width="225"/>
+</a>
 
 ![](http://g.recordit.co/m3xt6RGHqn.gif)
 
-<a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1176377826&mt=8" rel="iphone app">![Iphone App](https://github.com/etaiklein/wandr/blob/master/images/download-app-store.eps)</a>
-
-<a href="https://play.google.com/store/apps/details?id=com.wandr2&hl=en" rel="android app">![Android App](https://github.com/etaiklein/wandr/blob/master/images/download-google-play.png)</a>
 
 ## Wandr2 alerts you when to head to your destination <br> based on your current location.
 
