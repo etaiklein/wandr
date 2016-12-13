@@ -1,49 +1,28 @@
-## [fastlane match](https://github.com/fastlane/fastlane/tree/master/match#readme)
+# Wandr2
 
-This repository contains all your certificates and provisioning profiles needed to build and sign your applications. They are encrypted using OpenSSL via a passphrase.
+![](http://g.recordit.co/m3xt6RGHqn.gif)
 
-**Important:** Make sure this repository is set to private and only your team members have access to this repo.
+## Wandr2 alerts you when to head to your destination <br> based on your current location.
 
-Do not modify this file, as it gets overwritten every time you run `match`.
+#### How to use:
+1. You set the time and location of your destination
+2. You wander about stress-free. Buy a coffee. Look at some art. Appreciate the world.
+3. You are alerted when to head towards your destination
 
-### Install [fastlane match](https://github.com/fastlane/fastlane/tree/master/match#readme)
+#### Under the hood:
+1. wandr2 calculates the time it takes for you to walk from your current location to your destination 
+2. wandr2 sets an alarm 
+3. wandr2 updates the alarm every time your location updates
 
-```
-sudo gem install match
-```
+## Technologies
+[see package.json](https://github.com/etaiklein/wandr/blob/master/package.json)
 
-Make sure you have the latest version of the Xcode command line tools installed:
+## TODO:
+1. Use background geolocation. See the [github issue](https://github.com/mauron85/react-native-background-geolocation/issues/12#issuecomment-264374892)
+2. Fix null location bug
+3. Make it prettier
 
-```
-xcode-select --install
-```
-
-### Usage
-
-Navigate to your project folder and run
-
-```
-match appstore
-```
-```
-match adhoc
-```
-```
-match development
-```
-
-For more information open [fastlane match git repo](https://github.com/fastlane/fastlane/tree/master/match#readme)
-
-### Content
-
-#### certs
-
-This directory contains all your certificates with their private keys
-
-#### profiles
-
-This directory contains all provisioning profiles
-
-------------------------------------
-
-For more information open [fastlane match git repo](https://github.com/fastlane/fastlane/tree/master/match#readme)
+## Use Cases:
+1. You're early to your first day on the job and you want to explore the block. You arrive on time.
+2. You have a reservation at 8pm but you want to go on a walk with your date first. You arrive on time.
+3. You're supposed to meet your friends at the food court in half an hour, but you lose track of time in stores easily.  You arrive on time.
