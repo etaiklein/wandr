@@ -21,6 +21,12 @@
 2. wandr2 sets an alarm 
 3. wandr2 updates the alarm every time your location updates
 
+## Setting up
+1. clone the repo
+2. Link Mapbox [android](https://github.com/mapbox/react-native-mapbox-gl/blob/master/android/install.md) and [ios](https://github.com/mapbox/react-native-mapbox-gl/blob/master/ios/install.md)
+3. Link [Push Notifications](https://github.com/zo0r/react-native-push-notification#installation)
+4. run in your favorite mobile emulator
+
 ## Technologies
 [see package.json](https://github.com/etaiklein/wandr/blob/master/package.json)
 
