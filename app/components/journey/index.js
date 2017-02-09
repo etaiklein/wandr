@@ -30,10 +30,10 @@ class Journey extends Component {
         this.props.currentLocation.longitude, 
         this.props.geocode.latitude, 
         this.props.geocode.longitude, 
-        150, //paddingTop
-        150,  //paddingRight
-        150,  //paddingBottom
-        150,  //paddingLeft
+        0, //paddingTop
+        0,  //paddingRight
+        0,  //paddingBottom
+        0,  //paddingLeft
         true //animation
       );
     });
@@ -56,8 +56,8 @@ class Journey extends Component {
           userTrackingMode={Mapbox.userTrackingMode.none}
           initialDirection={0}
           rotateEnabled={false}
-          scrollEnabled={false}
-          zoomEnabled={false}
+          scrollEnabled={true}
+          zoomEnabled={true}
           logoIsHidden={true}
           showsUserLocation={true}
           styleURL={Mapbox.mapStyles.bright}

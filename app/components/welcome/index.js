@@ -10,6 +10,7 @@ import {travelTimePlusFive, toTimeString} from '../../lib/time';
 import Button from 'apsl-react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Fumi } from 'react-native-textinput-effects';
+import BackgroundGeolocation from "react-native-background-geolocation";
 import {Text, 
   View, 
   ScrollView, 
@@ -32,35 +33,60 @@ import { Form,
 
 
 class Welcome extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  watchID: ?number = null;
+ componentWillMount() {
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      //get current location
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.props.updateCurrentLocation([position.coords.latitude, position.coords.longitude]);
-        },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
-      this.watchID = navigator.geolocation.watchPosition((position) => {
-        let currentLocation = this.polylineFormat(position.coords);
-        this.props.updateCurrentLocation(currentLocation);
-        if (this.props.geocode.latitude === "") {return}
-        let route = [this.polylineFormat(this.props.geocode), currentLocation]
-        this.props.fetchDistance(route);
-        this.setPushNotificationSchedule();
-      });
+    // This handler fires whenever bgGeo receives a location update.
+    BackgroundGeolocation.on('location', (location) => this.onLocation(location));
+
+    // // This handler fires when movement states changes (stationary->moving; moving->stationary)
+    // BackgroundGeolocation.on('motionchange', this.onMotionChange);
+
+    // Now configure the plugin.
+    BackgroundGeolocation.configure({
+      // Geolocation Config
+      desiredAccuracy: 0,
+      stationaryRadius: 25,
+      distanceFilter: 10,
+      // Activity Recognition
+      stopTimeout: 1,
+      // Application config
+      // debug: true, // <-- enable for debug sounds & notifications
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
+      stopOnTerminate: false,   // <-- Allow the background-service to continue tracking when user closes the app.
+      // startOnBoot: true,        // <-- Auto start tracking when device is powered-up.
+      // HTTP / SQLite config
+      // url: 'http://posttestserver.com/post.php?dir=cordova-background-geolocation',
+      // autoSync: true,         // <-- POST each location immediately to server
+      // params: {               // <-- Optional HTTP params
+      //   "auth_token": "maybe_your_server_authenticates_via_token_YES?"
+      //}
+    }, function(state) {
+      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+
+      if (!state.enabled) {
+        BackgroundGeolocation.start(function() {
+          console.log("- Start success");
+        });
+      }
     });
   }
 
+  // You must remove listeners when your component unmounts
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+    // Remove BackgroundGeolocation listeners
+    BackgroundGeolocation.un('location', this.onLocation);
+    BackgroundGeolocation.un('motionchange', this.onMotionChange);
+  }
+
+  onLocation(location){
+    console.log('- [js]location: ', JSON.stringify(location));
+    let currentLocation = this.polylineFormat(location.coords);
+    this.props.updateCurrentLocation(currentLocation);
+    if (this.props.geocode.latitude === "") {return}
+    let route = [this.polylineFormat(this.props.geocode), currentLocation]
+    this.props.fetchDistance(route);
+    this.setPushNotificationSchedule();
   }
 
   handleTimeChange(event){
