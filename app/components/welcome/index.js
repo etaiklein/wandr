@@ -54,13 +54,6 @@ class Welcome extends Component {
       // debug: true, // <-- enable for debug sounds & notifications
       logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
       stopOnTerminate: false,   // <-- Allow the background-service to continue tracking when user closes the app.
-      // startOnBoot: true,        // <-- Auto start tracking when device is powered-up.
-      // HTTP / SQLite config
-      // url: 'http://posttestserver.com/post.php?dir=cordova-background-geolocation',
-      // autoSync: true,         // <-- POST each location immediately to server
-      // params: {               // <-- Optional HTTP params
-      //   "auth_token": "maybe_your_server_authenticates_via_token_YES?"
-      //}
     }, function(state) {
       console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
 
@@ -76,16 +69,18 @@ class Welcome extends Component {
   componentWillUnmount() {
     // Remove BackgroundGeolocation listeners
     BackgroundGeolocation.un('location', this.onLocation);
-    BackgroundGeolocation.un('motionchange', this.onMotionChange);
+    // BackgroundGeolocation.un('motionchange', this.onMotionChange);
   }
 
   onLocation(location){
-    console.log('- [js]location: ', JSON.stringify(location));
+    //update location
     let currentLocation = this.polylineFormat(location.coords);
     this.props.updateCurrentLocation(currentLocation);
+    //update distance to destination
     if (this.props.geocode.latitude === "") {return}
     let route = [this.polylineFormat(this.props.geocode), currentLocation]
     this.props.fetchDistance(route);
+    //update push notification
     this.setPushNotificationSchedule();
   }
 

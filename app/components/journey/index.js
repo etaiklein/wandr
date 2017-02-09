@@ -30,10 +30,10 @@ class Journey extends Component {
         this.props.currentLocation.longitude, 
         this.props.geocode.latitude, 
         this.props.geocode.longitude, 
-        0, //paddingTop
-        0,  //paddingRight
-        0,  //paddingBottom
-        0,  //paddingLeft
+        25, //paddingTop
+        25,  //paddingRight
+        25,  //paddingBottom
+        25,  //paddingLeft
         true //animation
       );
     });
